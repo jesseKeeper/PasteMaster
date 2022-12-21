@@ -10,3 +10,7 @@ if __name__ == '__main__':
 @app.route('/start.html', methods=['GET'])
 def start():
    return render_template('start.html')
+
+@app.errorhandler(404)
+def page_not_found(error):
+   return render_template('index.html'), 404
