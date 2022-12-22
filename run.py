@@ -1,8 +1,4 @@
 import os
-
-cmd = 'cd PasteMaster'
-os.system(cmd)
-
 cmd = 'export FLASK_ENV=development'
 os.system(cmd)
 
