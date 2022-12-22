@@ -11,6 +11,15 @@ if __name__ == '__main__':
 def index():
    return render_template('start.html')
 
+# @app.route('/start.html', methods=['GET'])
+# def index():
+#    return render_template('start.html')
+
+@app.route('/run.html')
+def run_script():
+   file = open(r'./Kickstarter/calibration/calibrate.py', 'r').read()
+   return exec(file)
+
 @app.errorhandler(404)
 def page_not_found(error):
    return render_template('index.html'), 404
