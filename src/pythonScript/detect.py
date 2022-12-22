@@ -58,7 +58,7 @@ def classifyThtPads(pads, hierarchy):
             thtPads.append(pads[i])
     return thtPads
     
-image = cv2.imread("test7.jpg")
+image = cv2.imread("python_test.jpg")
 
 pads, hierarchy = findPads(image, padRange, bluePcbRange)
 
