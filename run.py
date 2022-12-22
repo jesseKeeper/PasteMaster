@@ -1,4 +1,7 @@
 import os
+cmd = 'git pull'
+os.system(cmd)
+
 cmd = 'export FLASK_ENV=development'
 os.system(cmd)
 
