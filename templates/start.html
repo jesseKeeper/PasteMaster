@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en" class="home-page">
 <head>
-    <a href="./index.html" title="Home"><title>PasteMaster</title></a>
+    <title>PasteMaster</title>
     <link rel="shortcut icon" href="{{url_for('static', filename='image/pageImage.png')}}" />
 
     <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/site.css') }}">
@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<h2 class="header start-header">PasteMaster</h2>
+<a href="./index.html" title="Home"><h2 class="header start-header">PasteMaster</h2></a>
 <div id="test-element" class="pcb-image">
     <img src="{{url_for('static', filename='image/test_image.jpeg')}}" alt="pcb image" width="80%" height="60%"></img>
     <div id="img-box" class="pcb-text">
