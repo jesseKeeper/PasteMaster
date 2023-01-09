@@ -15,7 +15,7 @@ jQuery(document).on('click', '.header', function () {
     window.location.replace("./index.html");
 });
 
-jQuery( "#pcb-options" ).load(function() {
+jQuery(document).on('load', '#pcb-options', function () {
     addOption ('test', 'line');
     addOption ('test', 'line');
     addOption ('test', 'line');
