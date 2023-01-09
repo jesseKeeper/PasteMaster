@@ -16,7 +16,6 @@ jQuery(document).on('click', '.header', function () {
 });
 
 $(function() {
-    console.log( "ready!" );
     addOption ('test', 'line');
     addOption ('test', 'line');
     addOption ('test', 'line');
