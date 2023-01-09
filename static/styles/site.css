@@ -52,7 +52,7 @@
 }
 
 .pcb-option:hover {
-  background-color: lightseagreen;
+  background-color: rgba(32, 178, 34, 0.6);
 }
 
 .pcb-image {
