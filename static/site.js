@@ -2,7 +2,6 @@ function test() {
     return "test";
 }
 
-
-function printLineOnScreen() {
-    
-}
+jQuery(document).on('click', '.header', function () {
+    window.location.replace("./index.html");
+});
