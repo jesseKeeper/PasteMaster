@@ -30,7 +30,7 @@ function returnAllCheckedPoints () {
 
 jQuery (function() {
     addOption ('test', 'line');
+    addOption ('line', 'test');
     addOption ('test', 'line');
-    addOption ('test', 'line');
-    addOption ('test', 'line');
+    addOption ('line', 'test');
 });
