@@ -2,7 +2,7 @@ function test() {
     return "test";
 }
 
-
+let checked_pcb_options = [];
 let pcb_options = [];
 let pcb_count = 0;
 
@@ -23,8 +23,19 @@ jQuery(document).on('click', '.header', function () {
     window.location.replace("./index.html");
 });
 
+function checkBoxChecked (_id) {
+    if (jQuery('#' + _id).is(':checked')) {
+        console.log(_id + "box checked!");
+        checked_pcb_options.push(_id);
+    } else {
+        console.log(_id + "box not checked!");
+    }
+}
+
 function returnAllCheckedPoints () {
-    return pcb_options;
+    checked_pcb_options = [];
+    pcb_options.forEach(box => checkBoxChecked (box));
+    return checked_pcb_options;
 }
 
 
