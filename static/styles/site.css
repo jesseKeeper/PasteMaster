@@ -46,9 +46,14 @@
   background-color: white;
   color: #d4af37;
 }
+
 .option-header{
   margin-left: 20px;
   margin-right: 15px;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
 }
 
 .pcb-option:hover {
