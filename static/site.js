@@ -8,7 +8,7 @@ jQuery(document).on('click', '.header', function () {
 
 function addOption (text) {
     jQuery (
-        '<p class="pcb-option">' +
+        '<p class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
             '<input type="checkbox" id="rec1" name="rec1" value="1"> ' +
             '<label for="1">' + text + '</label>' +
         '</p>' 
