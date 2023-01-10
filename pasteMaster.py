@@ -12,7 +12,8 @@ if __name__ == '__main__':
 
 @app.route('/start.html', methods=['GET'])
 def index():
-   return render_template('start.html')
+   file = open(r'./src/pythonScript/test.py', 'r').read()
+   return render_template('start.html'), exec(file)
 
 # @app.route('/start.html', methods=['GET'])
 # def index():
@@ -22,8 +23,7 @@ def index():
 @app.route('/run.html')
 def run_script():
    # return db naam / file naam --> return foto + array
-   file = open(r'./src/pythonScript/test.py', 'r').read()
-   return render_template('page_not_found.html'), exec(file)
+   return render_template('page_not_found.html')
 
 @app.errorhandler(404)
 def page_not_found(error):
