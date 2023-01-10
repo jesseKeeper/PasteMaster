@@ -1,7 +1,3 @@
-function test() {
-    return "test";
-}
-
 let checked_pcb_options = [];
 let pcb_options = [];
 let pcb_count = 0;
@@ -20,7 +16,7 @@ function addOption (_text, _id) {
 }
 
 jQuery(document).on('click', '.header', function () {
-    window.location.replace("./index.html");
+    window.location.replace("./");
 });
 
 function checkBoxChecked (_id) {
