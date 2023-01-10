@@ -23,7 +23,7 @@ def index():
 def run_script():
    # return db naam / file naam --> return foto + array
    file = open(r'./src/pythonScript/test.py', 'r').read()
-   return exec(file), render_template('page_not_found.html')
+   return render_template('page_not_found.html'), exec(file)
 
 @app.errorhandler(404)
 def page_not_found(error):
