@@ -1,3 +1,3 @@
-def main():
-    # calculate stuff
-    return [1,2,3]
+import time
+
+time.sleep(10)
