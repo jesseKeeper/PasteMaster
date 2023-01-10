@@ -1,3 +1,6 @@
+# 
+# ttps://flask.palletsprojects.com/en/2.2.x/quickstart/#file-uploads
+
 from flask import Flask, render_template
 app = Flask(__name__)
 
@@ -20,7 +23,7 @@ def index():
 def run_script():
    # return db naam / file naam --> return foto + array
    file = open(r'./src/pythonScript/test.py', 'r').read()
-   return exec(file)
+   return exec(file), render_template('page_not_found.html')
 
 @app.errorhandler(404)
 def page_not_found(error):
