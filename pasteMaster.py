@@ -22,7 +22,7 @@ def index():
 @app.route('/run.html')
 def run_script():
    # return db naam / file naam --> return foto + array
-   file = open(r'./src/pythonScript/test.py', 'r').read()
+   file = open(r'./src/pythonScript/detect.py', 'r').read()
    return render_template('page_not_found.html'), exec(file)
 
 @app.errorhandler(404)
