@@ -1,1 +1,3 @@
-'test123'
+def main():
+    # calculate stuff
+    return [1,2,3]
