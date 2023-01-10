@@ -15,7 +15,7 @@ def index():
 # def index():
 #    return render_template('start.html')
 
-@app.route('/run.html')
+# @app.route('/run.html')
 def run_script():
    file = open(r'./src/pythonScript/detect.py', 'r').read()
    return exec(file)
