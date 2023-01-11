@@ -47,7 +47,8 @@ jQuery(document).on('click', '.header', function () {
 
 /* Bij het laden van de pagina */
 jQuery (function() {
-    if (jQuery('#start-page')) {
+    if (jQuery('#start-page').length === 1) {
+        console.log('test');
         addOption ('test', 'line');
         addOption ('line', 'test');
         addOption ('test', 'line');
