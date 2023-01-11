@@ -9,6 +9,8 @@ picam2.stop()
 
 time.sleep(3)
 
+SystemExit
+
 # path = "path/to/image.jpg"
 
 # with open(path, 'rb') as f:
