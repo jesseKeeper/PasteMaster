@@ -16,7 +16,11 @@
 <div id="test-element">
     <img src="{{url_for('static', filename='image/view.jpg')}}" alt="pcb image" class="pcb-image"></img>
     <div id="img-box" class="pcb-text">
-        <h1 class="option-header" id="pcb-options">Options</h1>
+        <h1 class="option-header">Options</h1>
+        <p id="pcb-options" style="margin-top: 0px; margin-bottom: 5px;">
+            <input type="checkbox" name="All" value="All" checked>
+            <label for="1">All</label>
+        </p>
     </div>
 </div>
 
