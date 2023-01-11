@@ -2,6 +2,7 @@
 
 from flask import Flask, render_template
 app = Flask(__name__)
+
 boot = 0
 
 if __name__ == '__main__':
@@ -13,6 +14,7 @@ def homes():
 
 @app.route('/start', methods=['GET'])
 def index():
+   global boot
    if (boot == 0):
       file = open(r'./src/pythonScript/initPhoto.py', 'r').read()
       boot = 1
