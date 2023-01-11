@@ -2,6 +2,19 @@ let checked_pcb_options = [];
 let pcb_options = [];
 let pcb_count = 0;
 
+jQuery(document).on('click', '.pcb-option', function () {
+    if (returnAllCheckedPoints().length === pcb_count) {
+        console.log('test1');
+
+        if (!jQuery('#pcb-options').is(':checked')) {
+            console.log('test2');
+        }
+    } else {            
+        console.log('test3');
+    }
+    console.log('test');
+});
+
 function addOption (_text, _id) {
     let pcb_id = _id + '_' + pcb_count;
     pcb_count++;
@@ -21,7 +34,7 @@ jQuery(document).on('click', '.header', function () {
 
 function checkBoxChecked (_id) {
     if (jQuery('#' + _id).is(':checked')) {
-        console.log(_id + "box checked!");
+        // console.log(_id + "box checked!");
         checked_pcb_options.push(_id);
     } else {
         console.log(_id + "box not checked!");
