@@ -1,4 +1,6 @@
-.home-page {
+.home-page,
+.start-page,
+.not-found-page {
   background-color: rgb(30, 110, 40);
 }
 
