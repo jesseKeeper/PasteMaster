@@ -10,10 +10,6 @@ if __name__ == '__main__':
 @app.route('/')
 def homes():
    return render_template('index.html')
-   
-@app.route('/index.html')
-def home():
-   return render_template('index.html')
 
 @app.route('/start', methods=['GET'])
 def index():

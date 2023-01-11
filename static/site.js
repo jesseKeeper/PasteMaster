@@ -47,9 +47,10 @@ jQuery(document).on('click', '.header', function () {
 
 /* Bij het laden van de pagina */
 jQuery (function() {
-    console.log('yes');
-    addOption ('test', 'line');
-    addOption ('line', 'test');
-    addOption ('test', 'line');
-    addOption ('line', 'test');
+    if (jQuery('#start-page')) {
+        addOption ('test', 'line');
+        addOption ('line', 'test');
+        addOption ('test', 'line');
+        addOption ('line', 'test');
+    }
 });
