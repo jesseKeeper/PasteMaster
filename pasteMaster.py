@@ -13,8 +13,9 @@ def homes():
 
 @app.route('/start', methods=['GET'])
 def index():
-   if (boot == 0) 
+   if (boot == 0):
       file = open(r'./src/pythonScript/initPhoto.py', 'r').read()
+      boot = 1
    else:
       file = open(r'./src/pythonScript/photo.py', 'r').read()
 
