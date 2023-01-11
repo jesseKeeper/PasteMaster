@@ -1,8 +1,8 @@
-# 
 # ttps://flask.palletsprojects.com/en/2.2.x/quickstart/#file-uploads
 
 from flask import Flask, render_template
 app = Flask(__name__)
+boot = 0
 
 if __name__ == '__main__':
    app.run()
@@ -13,7 +13,11 @@ def homes():
 
 @app.route('/start', methods=['GET'])
 def index():
-   file = open(r'./src/pythonScript/test.py', 'r').read()
+   if (boot == 0) 
+      file = open(r'./src/pythonScript/initPhoto.py', 'r').read()
+   else:
+      file = open(r'./src/pythonScript/photo.py', 'r').read()
+
    return render_template('start.html'), exec(file)
    # return render_template('start.html')
 
