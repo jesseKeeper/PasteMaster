@@ -29,8 +29,6 @@ function checkBoxChecked (_id) {
     if (jQuery('#' + _id).is(':checked')) {
         // console.log(_id + "box checked!");
         checked_pcb_options.push(_id);
-    } else {
-        console.log(_id + "box not checked!");
     }
 }
 
@@ -47,6 +45,8 @@ jQuery(document).on('click', '.header', function () {
 
 /* Bij het laden van de pagina */
 jQuery (function() {
+
+    /* alleen bij het start scherm */
     if (jQuery('#start-page').length === 1) {
         console.log('test');
         addOption ('test', 'line');
@@ -54,4 +54,5 @@ jQuery (function() {
         addOption ('test', 'line');
         addOption ('line', 'test');
     }
+
 });

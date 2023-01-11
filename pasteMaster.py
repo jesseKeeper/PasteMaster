@@ -13,9 +13,9 @@ def homes():
 
 @app.route('/start', methods=['GET'])
 def index():
-   # file = open(r'./src/pythonScript/test.py', 'r').read()
-   # return render_template('start.html'), exec(file)
-   return render_template('start.html')
+   file = open(r'./src/pythonScript/test.py', 'r').read()
+   return render_template('start.html'), exec(file)
+   # return render_template('start.html')
 
 # @app.route('/start.html', methods=['GET'])
 # def index():
