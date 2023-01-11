@@ -56,3 +56,10 @@ jQuery (function() {
     }
 
 });
+
+setInterval(function () {
+    var request = new XMLHttpRequest();
+    request.open("GET", "data", true);
+    request.setRequestHeader("Cache-Control", "no-cache");
+    request.send();
+}, 1000);
