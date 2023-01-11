@@ -2,18 +2,14 @@ let checked_pcb_options = [];
 let pcb_options = [];
 let pcb_count = 0;
 
-jQuery(document).on('click', '.pcb-option', function () {
-    if (returnAllCheckedPoints().length === pcb_count) {
-        console.log('test1');
-
-        if (!jQuery('#pcb-options').is(':checked')) {
-            console.log('test2');
-        }
-    } else {            
-        console.log('test3');
-    }
-    console.log('test');
-});
+// func die reageert op verandering van .pcb-option
+// jQuery(document).on('click', '.pcb-option', function () {
+    // if (returnAllCheckedPoints().length === pcb_count) {
+        // if (!jQuery('#pcb-options').is(':checked')) {
+        // }
+    // }
+    // console.log('test');
+// });
 
 function addOption (_text, _id) {
     let pcb_id = _id + '_' + pcb_count;
@@ -28,9 +24,6 @@ function addOption (_text, _id) {
     ) .insertAfter(jQuery('#pcb-options'));
 }
 
-jQuery(document).on('click', '.header', function () {
-    window.location.replace("./");
-});
 
 function checkBoxChecked (_id) {
     if (jQuery('#' + _id).is(':checked')) {
@@ -47,8 +40,14 @@ function returnAllCheckedPoints () {
     return checked_pcb_options;
 }
 
+/* bij .header click ga naar homepage */
+jQuery(document).on('click', '.header', function () {
+    window.location.replace("./");
+});
 
+/* Bij het laden van de pagina */
 jQuery (function() {
+    console.log('yes');
     addOption ('test', 'line');
     addOption ('line', 'test');
     addOption ('test', 'line');
