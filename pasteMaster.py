@@ -17,7 +17,7 @@ def index():
    global boot
    if (boot == 0):
       file = open(r'./src/pythonScript/initPhoto.py', 'r').read()
-      boot = 1
+      # boot = 1
    else:
       file = open(r'./src/pythonScript/photo.py', 'r').read()
 
