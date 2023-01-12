@@ -6,7 +6,7 @@ print('First time after power down:')
 print('export FLASK_ENV=development')
 print('export FLASK_APP=pasteMaster\n')
 
-print('flask run --host=0.0.0.0')
+print('python run.py')
 
 cmd = 'flask run --host=0.0.0.0'
 os.system(cmd)
