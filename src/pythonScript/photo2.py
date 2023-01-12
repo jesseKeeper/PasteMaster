@@ -1,3 +1,3 @@
-import photo
+from photo import capture
 
-photo.capture()
+capture()
