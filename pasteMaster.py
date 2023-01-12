@@ -3,8 +3,6 @@
 from flask import Flask, render_template
 app = Flask(__name__)
 
-boot = 0
-
 if __name__ == '__main__':
    app.run()
 
@@ -14,13 +12,7 @@ def homes():
 
 @app.route('/start', methods=['GET'])
 def index():
-   global boot
-   if (boot == 0):
-      file = open(r'./src/pythonScript/photo.py', 'r').read()
-      # boot = 1
-   else:
-      file = open(r'./src/pythonScript/photo2.py', 'r').read()
-
+   file = open(r'./src/pythonScript/photo.py', 'r').read()
    return render_template('start.html'), exec(file)
    # return render_template('start.html')
 
