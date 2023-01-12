@@ -16,10 +16,10 @@ def homes():
 def index():
    global boot
    if (boot == 0):
-      file = open(r'./src/pythonScript/initPhoto.py', 'r').read()
+      file = open(r'./src/pythonScript/photo.py', 'r').read()
       # boot = 1
    else:
-      file = open(r'./src/pythonScript/photo.py', 'r').read()
+      file = open(r'./src/pythonScript/photo2.py', 'r').read()
 
    return render_template('start.html'), exec(file)
    # return render_template('start.html')
