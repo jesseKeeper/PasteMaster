@@ -17,7 +17,7 @@ def index():
 
 @app.route('/pcb')
 def get_image():
-   filename = 'view.jpg'
+   filename = 'static/image/view.jpg'
    return send_file(filename, mimetype='image/jpg')
 
 # @app.route('/run')
