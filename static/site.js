@@ -38,18 +38,25 @@ function returnAllCheckedPoints () {
     return checked_pcb_options;
 }
 
+/** Wordt aangeroepen via JS zodat uuid kan toegevoegd worden */
 function insertImage () {
-    jQuery ('<img id="pcb_image" src="./pcb?' + uuidv4() + '" alt="pcb image" class="pcb-image"></img>').insertAfter('#image');
+    jQuery ('<img id="pcb_image" src="./pcb?' + uuidv4() + '" alt="pcb image" class="pcb-image"></img>').insertAfter('#pcb_image');
 }
 
-/* bij .header click ga naar homepage */
+/** genereer een uniek id --> zorg ervoor dat er niet gecached kan worden */
+function uuidv4() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+  }
+
+/** bij .header click ga naar homepage */
 jQuery(document).on('click', '.header', function () {
     window.location.replace("./");
 });
 
 /* Bij het laden van de pagina */
 jQuery (function() {
-
     /* alleen bij het start scherm */
     if (jQuery('#start-page').length === 1) {
         insertImage ();
@@ -61,9 +68,3 @@ jQuery (function() {
     }
 
 });
-
-function uuidv4() {
-    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
-  }
