@@ -1,11 +1,14 @@
-from picamera import PiCamera
-from time import sleep
+from picamera2 import Picamera2
+import time
 
+time.sleep(2)
 
-camera = PiCamera()
+picam2 = Picamera2()
 
 def capture ():
-    global camera
-    camera.capture('static/image/view.jpg')
-    sleep(5)
+    global picam2
+    picam2.start_and_capture_file("static/image/view.jpg", delay=0, show_preview=False)
+    picam2.stop()
+    time.sleep(2)
 
+capture()
