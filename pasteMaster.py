@@ -20,11 +20,6 @@ def get_image():
    filename = 'static/image/view.jpg'
    return send_file(filename, mimetype='image/jpg')
 
-# @app.route('/run')
-def run_script():
-   # return db naam / file naam --> return foto + array
-   return render_template('page_not_found.html')
-
 @app.errorhandler(404)
 def page_not_found(error):
    return render_template('page_not_found.html'), 404
