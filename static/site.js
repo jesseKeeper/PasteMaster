@@ -39,7 +39,7 @@ function returnAllCheckedPoints () {
 }
 
 function insertImage () {
-    jQuery ('<img id="pcb_image" src="./pcb?' + Math.floor(Math.random() * 101) + '" alt="pcb image" class="pcb-image"></img>').insertAfter('#image');
+    jQuery ('<img id="pcb_image" src="./pcb?' + uuidv4() + '" alt="pcb image" class="pcb-image"></img>').insertAfter('#image');
 }
 
 /* bij .header click ga naar homepage */
@@ -61,3 +61,9 @@ jQuery (function() {
     }
 
 });
+
+function uuidv4() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+  }
