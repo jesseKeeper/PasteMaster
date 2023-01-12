@@ -1,10 +1,8 @@
-from picamera2 import Picamera2
-import time
+from picamera import PiCamera
+from time import sleep
 
-time.sleep(3)
+camera = PiCamera()
+camera.rotation = 180
+camera.capture('static/image/view.jpg')
 
-picam2 = Picamera2()
-picam2.start_and_capture_file("static/image/view.jpg", delay=0, show_preview=False)
-picam2.stop()
-
-time.sleep(3)
+sleep(5)
