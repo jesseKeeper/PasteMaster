@@ -38,6 +38,10 @@ function returnAllCheckedPoints () {
     return checked_pcb_options;
 }
 
+function insertImage () {
+    jQuery ('<img id="pcb_image" src="./pcb?' + Math.floor(Math.random() * 101) + '" alt="pcb image" class="pcb-image"></img>').insertAfter('#image');
+}
+
 /* bij .header click ga naar homepage */
 jQuery(document).on('click', '.header', function () {
     window.location.replace("./");
@@ -48,7 +52,8 @@ jQuery (function() {
 
     /* alleen bij het start scherm */
     if (jQuery('#start-page').length === 1) {
-        console.log('test');
+        
+
         addOption ('test', 'line');
         addOption ('line', 'test');
         addOption ('test', 'line');
