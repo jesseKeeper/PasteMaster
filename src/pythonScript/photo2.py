@@ -1,0 +1,3 @@
+import photo
+
+photo.capture()
