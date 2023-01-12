@@ -1,8 +1,4 @@
 from picamera2 import Picamera2
-import time
-
-time.sleep(2)
-
 picam2 = Picamera2()
 
 def capture ():
