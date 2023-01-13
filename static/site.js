@@ -38,6 +38,12 @@ function returnAllCheckedPoints () {
     return checked_pcb_options;
 }
 
+function getPosImage () {
+    var position = $("#pcb_image").offset();
+    console.log(position.top);
+    console.log(position.left);
+}
+
 /** Wordt aangeroepen via JS zodat uuid kan toegevoegd worden */
 function insertImage () {
     jQuery ('<img id="pcb_image" src="./pcb?' + uuidv4() + '" alt="pcb image" class="pcb-image"></img>').insertAfter('#pcb_image');
