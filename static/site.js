@@ -58,7 +58,7 @@ function getPosImage () {
 
 /** Wordt aangeroepen via JS zodat uuid kan toegevoegd worden */
 function insertImage () {
-    jQuery ('<img id="pcb_image" src="./pcb?' + uuidv4() + '" alt="pcb image" class="pcb-image"></img>').insertAfter('#pcb_image');
+    jQuery ('<img id="pcb_image" src="./pcb?' + uuidv4() + '" alt="pcb image" class="pcb-image"></img>').insertBefore('#pcb_image');
 }
 
 /** genereer een uniek id --> zorg ervoor dat er niet gecached kan worden */
