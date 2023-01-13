@@ -39,9 +39,15 @@ function returnAllCheckedPoints () {
 }
 
 /** Wordt aangeroepen via JS zodat uuid kan toegevoegd worden */
-function insertImage () {
+function insertImage (update = false) {
+    if(update) {
+        jQuery('#pcb_image').remove();
+        jQuery ('<div id="pcb_image"> </div>').insertAfter('#pcb_user');
+    }
     jQuery ('<img id="pcb_image" src="./pcb?' + uuidv4() + '" alt="pcb image" class="pcb-image"></img>').insertAfter('#pcb_image');
 }
+
+
 
 /** genereer een uniek id --> zorg ervoor dat er niet gecached kan worden */
 function uuidv4() {
