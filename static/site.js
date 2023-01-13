@@ -40,16 +40,15 @@ function returnAllCheckedPoints () {
 
 function getPosImage () {
     jQuery ('<canvas width="550" height="413" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
-    
     var position = $("#pcb_image").offset();
-    console.log(position.top);
-    console.log(position.left);
+    $('#canvas').css({ position:'absolute', top:position.top, left: position.left});
 
     const canvas = document.querySelector('#canvas');
     const ctx = canvas.getContext('2d');
+
     // set line stroke and line width
     ctx.strokeStyle = 'red';
-    ctx.lineWidth = 5;
+    ctx.lineWidth = 2;
 
     // draw a red line
     ctx.beginPath();
