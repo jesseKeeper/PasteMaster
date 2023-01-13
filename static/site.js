@@ -42,6 +42,18 @@ function getPosImage () {
     var position = $("#pcb_image").offset();
     console.log(position.top);
     console.log(position.left);
+
+    const canvas = document.querySelector('#pcb_image');
+    const ctx = canvas.getContext('2d');
+    // set line stroke and line width
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 5;
+
+    // draw a red line
+    ctx.beginPath();
+    ctx.moveTo(100, 100);
+    ctx.lineTo(300, 100);
+    ctx.stroke();
 }
 
 /** Wordt aangeroepen via JS zodat uuid kan toegevoegd worden */
