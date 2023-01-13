@@ -54,7 +54,7 @@ function insertCanvas () {
 }
 
 function drawLine(_color, _lineWidth, startX, startY, endX, endY) {
-    if(!jQuery('#canvas')) {
+    if(jQuery('#canvas').length != 1) {
         insertCanvas();
     }
     // set line stroke and line width
