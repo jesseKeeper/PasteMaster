@@ -1,6 +1,9 @@
-let checked_pcb_options = [];
-let pcb_options = [];
+// checkmarks
+let checked_pcb_options = [], pcb_options = [];
 let pcb_count = 0;
+
+// lines
+let canvas, ctx;
 
 // func die reageert op verandering van .pcb-option
 // jQuery(document).on('click', '.pcb-option', function () {
@@ -38,22 +41,30 @@ function returnAllCheckedPoints () {
     return checked_pcb_options;
 }
 
-function getPosImage () {
+function insertCanvas () {
     jQuery ('<canvas width="550" height="413" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
-    var position = $("#pcb_image").offset();
-    $('#canvas').css({ position:'absolute', top:position.top, left: position.left});
 
-    const canvas = document.querySelector('#canvas');
-    const ctx = canvas.getContext('2d');
+    var position = jQuery("#pcb_image").offset();
+    if(position) {
+        jQuery('#canvas').css({ position:'absolute', top:position.top, left: position.left});
 
+        canvas = document.querySelector('#canvas');
+        ctx = canvas.getContext('2d');
+    }
+}
+
+function drawLine(_color, _lineWidth, startX, startY, endX, endY) {
+    if(!jQuery('#canvas')) {
+        insertCanvas();
+    }
     // set line stroke and line width
-    ctx.strokeStyle = 'red';
-    ctx.lineWidth = 2;
+    ctx.strokeStyle = _color;
+    ctx.lineWidth = _lineWidth;
 
     // draw a red line
     ctx.beginPath();
-    ctx.moveTo(100, 100);
-    ctx.lineTo(300, 100);
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(endX, endY);
     ctx.stroke();
 }
 
