@@ -70,7 +70,8 @@ input[type="checkbox"] {
 }
 
 .pcb-image {
-  width: 58%;
+  width: 550px;
+  height: 413px;
   float: left;
   margin-left: 5px;
   margin-top: 5px;
