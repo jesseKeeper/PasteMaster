@@ -31,27 +31,20 @@ function returnAllCheckedPoints () {
 }
 
 function hasCheckBox (_4dArray) {
-    pcb_options.forEach( _id => 
-        console.log(JSON.stringify(_4dArray) === jQuery('#' + _id).val() )
-    );
-
-    // if(){
-    //     console.log('ja');
-    // } else {
-    //     console.log('nee');
-    // }
-
-
-    let pcb_id = pcb_count;
-    pcb_count++;
-    pcb_options.push(pcb_id);
-
-    jQuery (
-        '<p class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
-            '<input type="checkbox" id="' + pcb_id + '" name="' + pcb_id + '" value="' + JSON.stringify(_4dArray) + '" checked> ' +
-            '<label>Box ' + (pcb_id + 1) + ' </label>' +
-        '</p>' 
-    ) .insertAfter(jQuery('#pcb-options'));
+    pcb_options.forEach( function (_id) { 
+        if (JSON.stringify(_4dArray) !== jQuery('#' + _id).val() ) {
+            let pcb_id = pcb_count;
+            pcb_count++;
+            pcb_options.push(pcb_id);
+        
+            jQuery (
+                '<p class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
+                    '<input type="checkbox" id="' + pcb_id + '" name="' + pcb_id + '" value="' + JSON.stringify(_4dArray) + '" checked> ' +
+                    '<label>Box ' + (pcb_id + 1) + ' </label>' +
+                '</p>' 
+            ) .insertAfter(jQuery('#pcb-options'));
+        }
+    });
 }
 
 function insertCanvas () {
