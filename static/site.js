@@ -37,9 +37,10 @@ function hasCheckbox (_4dArray) {
         addCheckbox(_4dArray);
     } else {
         for (let i = 0; i < pcb_options.length; i++) {
-            console.log(JSON.stringify(_4dArray) !== jQuery('#' + pcb_options[i]).val());
-            
-            if (JSON.stringify(_4dArray) !== jQuery('#' + pcb_options[i]).val()) {
+            console.log(JSON.stringify(_4dArray) === jQuery('#' + pcb_options[i]).val());
+            console.log(JSON.stringify(_4dArray));
+
+            if (JSON.stringify(_4dArray) === jQuery('#' + pcb_options[i]).val()) {
                 addCheckbox(_4dArray);
             }
         }
