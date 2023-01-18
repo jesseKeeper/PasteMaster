@@ -57,7 +57,7 @@ function drawLine(startX, startY, endX, endY, _color = 'red', _lineWidth = 2) {
     if(jQuery('#canvas').length != 1) {
         insertCanvas();
     }
-    
+
     // set line stroke and line width
     ctx.strokeStyle = _color;
     ctx.lineWidth = _lineWidth;
@@ -67,6 +67,14 @@ function drawLine(startX, startY, endX, endY, _color = 'red', _lineWidth = 2) {
     ctx.moveTo(startX, startY);
     ctx.lineTo(endX, endY);
     ctx.stroke();
+}
+
+/** 4dArray: array with 4 corners with x, y as array */
+function drawBox (_4dArray) {
+    drawLine (_4dArray[0][0], _4dArray[0][1], _4dArray[1][0], _4dArray[1][1]);
+    drawLine (_4dArray[1][0], _4dArray[1][1], _4dArray[2][0], _4dArray[2][1]);
+    drawLine (_4dArray[2][0], _4dArray[2][1], _4dArray[3][0], _4dArray[3][1]);
+    drawLine (_4dArray[3][0], _4dArray[3][1], _4dArray[0][0], _4dArray[0][1]);
 }
 
 /** Wordt aangeroepen via JS zodat uuid kan toegevoegd worden */
@@ -89,10 +97,9 @@ function getTextFile() {
             arrayData = data.trim();
 
             /* use data */
-            drawLine (cleanString[0][0][0], cleanString[0][0][1], cleanString[0][1][0], cleanString[0][1][1]);
-            drawLine (cleanString[0][2][0], cleanString[0][2][1], cleanString[0][1][0], cleanString[0][1][1]);
-            drawLine (cleanString[0][3][0], cleanString[0][3][1], cleanString[0][2][0], cleanString[0][2][1]);
-            drawLine (cleanString[0][0][0], cleanString[0][0][1], cleanString[0][3][0], cleanString[0][3][1]);
+            drawBox(cleanString[0]);
+            drawBox(cleanString[1]);
+            drawBox(cleanString[2]);
         }
     });
 }
