@@ -8,10 +8,10 @@ let canvas, ctx;
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '.pcb-option', function () {
     if (returnAllCheckedPoints().length !== pcb_count) {
-        if (!jQuery('#pcb-options').is(':checked')) {
-        }
+
+    } else {
+
     }
-    console.log('test');
 });
 
 function checkBoxChecked (_id) {
@@ -28,6 +28,28 @@ function returnAllCheckedPoints () {
     checked_pcb_options = [];
     pcb_options.forEach(box => checkBoxChecked (box));
     return checked_pcb_options;
+}
+
+function hasCheckBox (_4dArray) {
+    console.log(pcb_options.forEach(_id => JSON.stringify(_4dArray) === jQuery('#' + _id).val()));
+
+    // if(){
+    //     console.log('ja');
+    // } else {
+    //     console.log('nee');
+    // }
+
+
+    let pcb_id = pcb_count;
+    pcb_count++;
+    pcb_options.push(pcb_id);
+
+    jQuery (
+        '<p class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
+            '<input type="checkbox" id="' + pcb_id + '" name="' + pcb_id + '" value="' + JSON.stringify(_4dArray) + '" checked> ' +
+            '<label>Box ' + (pcb_id + 1) + ' </label>' +
+        '</p>' 
+    ) .insertAfter(jQuery('#pcb-options'));
 }
 
 function insertCanvas () {
@@ -87,22 +109,13 @@ function getTextFile() {
 }
 
 /** 4dArray: array with 4 corners with x, y as array */
-function drawBox (_4dArray) {
-    let pcb_id = pcb_count;
-    pcb_count++;
-    pcb_options.push(pcb_id);
+function drawBox (_4dArray, _color) {
+    hasCheckBox(_4dArray);
 
-    jQuery (
-        '<p class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
-            '<input type="checkbox" id="' + pcb_id + '" name="' + pcb_id + '" value="' + JSON.stringify(_4dArray) + '" checked> ' +
-            '<label>Box ' + (pcb_id + 1) + ' </label>' +
-        '</p>' 
-    ) .insertAfter(jQuery('#pcb-options'));
-    
-    drawLine (_4dArray[0][0], _4dArray[0][1], _4dArray[1][0], _4dArray[1][1]); // draw top-left to top-right
-    drawLine (_4dArray[1][0], _4dArray[1][1], _4dArray[2][0], _4dArray[2][1]); // draw top-right to bottom-right
-    drawLine (_4dArray[2][0], _4dArray[2][1], _4dArray[3][0], _4dArray[3][1]); // draw bottem-right to bottem-left
-    drawLine (_4dArray[3][0], _4dArray[3][1], _4dArray[0][0], _4dArray[0][1]); // draw bottem-left to top-left
+    drawLine (_4dArray[0][0], _4dArray[0][1], _4dArray[1][0], _4dArray[1][1], _color); // draw top-left to top-right
+    drawLine (_4dArray[1][0], _4dArray[1][1], _4dArray[2][0], _4dArray[2][1], _color); // draw top-right to bottom-right
+    drawLine (_4dArray[2][0], _4dArray[2][1], _4dArray[3][0], _4dArray[3][1], _color); // draw bottem-right to bottem-left
+    drawLine (_4dArray[3][0], _4dArray[3][1], _4dArray[0][0], _4dArray[0][1], _color); // draw bottem-left to top-left
 }
 
 /** genereer een uniek id --> zorg ervoor dat er niet gecached kan worden */
