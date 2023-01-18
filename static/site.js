@@ -90,14 +90,14 @@ function drawBox (_4dArray) {
 
     jQuery (
         '<p class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
-            '<input type="checkbox" id="' + pcb_id + '" name="' + pcb_id + '" value="' + _4dArray + '" checked> ' +
+            '<input type="checkbox" id="' + pcb_id + '" name="' + pcb_id + '" value="' + JSON.stringify(_4dArray) + '" checked> ' +
         '</p>' 
     ) .insertAfter(jQuery('#pcb-options'));
     
-    drawLine (_4dArray[0][0], _4dArray[0][1], _4dArray[1][0], _4dArray[1][1]);
-    drawLine (_4dArray[1][0], _4dArray[1][1], _4dArray[2][0], _4dArray[2][1]);
-    drawLine (_4dArray[2][0], _4dArray[2][1], _4dArray[3][0], _4dArray[3][1]);
-    drawLine (_4dArray[3][0], _4dArray[3][1], _4dArray[0][0], _4dArray[0][1]);
+    drawLine (_4dArray[0][0], _4dArray[0][1], _4dArray[1][0], _4dArray[1][1]); // draw top-left to top-right
+    drawLine (_4dArray[1][0], _4dArray[1][1], _4dArray[2][0], _4dArray[2][1]); // draw top-right to bottom-right
+    drawLine (_4dArray[2][0], _4dArray[2][1], _4dArray[3][0], _4dArray[3][1]); // draw bottem-right to bottem-left
+    drawLine (_4dArray[3][0], _4dArray[3][1], _4dArray[0][0], _4dArray[0][1]); // draw bottem-left to top-left
 }
 
 /** genereer een uniek id --> zorg ervoor dat er niet gecached kan worden */
@@ -117,13 +117,11 @@ jQuery (function() {
     /* alleen bij het start scherm */
     if (jQuery('#start-page').length === 1) {
         // insertImage ();
-        readTextFile();
     }
-
-
 });
 
 function removeCanvas() {
-    let canvas = document.getElementById("canvas");
-    canvas.parentNode.removeChild(canvas);
+    if (jQuery("#canvas").length == 1) {
+        jQuery("#canvas").remove();
+    }
 }
