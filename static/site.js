@@ -31,7 +31,9 @@ function returnAllCheckedPoints () {
 }
 
 function hasCheckBox (_4dArray) {
-    console.log(pcb_options.forEach(_id => JSON.stringify(_4dArray) === jQuery('#' + _id).val()));
+    pcb_options.forEach( _id => 
+        console.log(JSON.stringify(_4dArray) === jQuery('#' + _id).val() )
+    );
 
     // if(){
     //     console.log('ja');
