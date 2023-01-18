@@ -73,12 +73,15 @@ function insertImage () {
     jQuery ('<img id="pcb_image" src="./pcb?' + uuidv4() + '" alt="pcb image" class="pcb-image"></img>').insertBefore('#pcb_image');
 }
 
+let arrayData;
+
 function getTextFile() {
     jQuery.ajax({
         url: './array?' + uuidv4(),
         method: "GET",
         success: function (data) {
-            console.log(data);
+            arrayData = data;
+            // JSON.stringify
         }
     });
 }
