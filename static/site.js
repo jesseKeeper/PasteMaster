@@ -14,20 +14,6 @@ let canvas, ctx;
     // console.log('test');
 // });
 
-function addOption (_text, _id) {
-    let pcb_id = _id + '_' + pcb_count;
-    pcb_count++;
-    pcb_options.push(pcb_id);
-
-    jQuery (
-        '<p class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
-            '<input type="checkbox" id="' + pcb_id + '" name="' + _id + '" value="' + pcb_id + '" checked> ' +
-            '<label for="1">' + _text + '</label>' +
-        '</p>' 
-    ) .insertAfter(jQuery('#pcb-options'));
-}
-
-
 function checkBoxChecked (_id) {
     if (jQuery('#' + _id).is(':checked')) {
         // console.log(_id + "box checked!");
@@ -69,14 +55,6 @@ function drawLine(startX, startY, endX, endY, _color = 'red', _lineWidth = 2) {
     ctx.stroke();
 }
 
-/** 4dArray: array with 4 corners with x, y as array */
-function drawBox (_4dArray) {
-    drawLine (_4dArray[0][0], _4dArray[0][1], _4dArray[1][0], _4dArray[1][1]);
-    drawLine (_4dArray[1][0], _4dArray[1][1], _4dArray[2][0], _4dArray[2][1]);
-    drawLine (_4dArray[2][0], _4dArray[2][1], _4dArray[3][0], _4dArray[3][1]);
-    drawLine (_4dArray[3][0], _4dArray[3][1], _4dArray[0][0], _4dArray[0][1]);
-}
-
 /** Wordt aangeroepen via JS zodat uuid kan toegevoegd worden */
 function insertImage () {
     jQuery ('<img id="pcb_image" src="./pcb?' + uuidv4() + '" alt="pcb image" class="pcb-image"></img>').insertBefore('#pcb_image');
@@ -104,6 +82,23 @@ function getTextFile() {
     });
 }
 
+/** 4dArray: array with 4 corners with x, y as array */
+function drawBox (_4dArray) {
+    let pcb_id = pcb_count;
+    pcb_count++;
+    pcb_options.push(pcb_id);
+
+    jQuery (
+        '<p class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
+            '<input type="checkbox" id="' + pcb_id + '" name="' + pcb_id + '" value="' + _4dArray + '" checked> ' +
+        '</p>' 
+    ) .insertAfter(jQuery('#pcb-options'));
+    
+    drawLine (_4dArray[0][0], _4dArray[0][1], _4dArray[1][0], _4dArray[1][1]);
+    drawLine (_4dArray[1][0], _4dArray[1][1], _4dArray[2][0], _4dArray[2][1]);
+    drawLine (_4dArray[2][0], _4dArray[2][1], _4dArray[3][0], _4dArray[3][1]);
+    drawLine (_4dArray[3][0], _4dArray[3][1], _4dArray[0][0], _4dArray[0][1]);
+}
 
 /** genereer een uniek id --> zorg ervoor dat er niet gecached kan worden */
 function uuidv4() {
@@ -128,6 +123,7 @@ jQuery (function() {
 
 });
 
-function readTextFile() {
-
+function removeCanvas() {
+    let canvas = document.getElementById("canvas");
+    canvas.parentNode.removeChild(canvas);
 }
