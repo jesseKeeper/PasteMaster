@@ -20,6 +20,11 @@ def get_image():
    filename = 'static/image/view.jpg'
    return send_file(filename, mimetype='image/jpg')
 
+@app.route('/array')
+def get_image():
+   filename = 'static/text/test.txt'
+   return send_file(filename, mimetype='text/plain')
+
 @app.errorhandler(404)
 def page_not_found(error):
    return render_template('page_not_found.html'), 404
