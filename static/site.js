@@ -73,7 +73,7 @@ function insertImage () {
     jQuery ('<img id="pcb_image" src="./pcb?' + uuidv4() + '" alt="pcb image" class="pcb-image"></img>').insertBefore('#pcb_image');
 }
 
-let arrayData;
+let arrayData, cleanString;
 
 function getTextFile() {
     jQuery.ajax({
@@ -83,8 +83,9 @@ function getTextFile() {
             let jsonString = data.trim().replace(/array/g, "");
             jsonString = jsonString.replace('(', "");
             jsonString = jsonString.replace(')', "");
+            cleanString = JSON.stringify(JSON.parse(jsonString));
 
-            arrayData = JSON.stringify(JSON.parse(jsonString));
+            arrayData = data.trim();
         }
     });
 }
