@@ -83,6 +83,9 @@ function getTextFile() {
             let jsonString = data.trim().replace(/array/g, "");
             jsonString = jsonString.replace('(', "");
             jsonString = jsonString.replace(')', "");
+            jsonString = jsonString.replace('(', "");
+            jsonString = jsonString.replace(')', "");
+
             cleanString = JSON.stringify(JSON.parse(jsonString));
 
             arrayData = data.trim();
