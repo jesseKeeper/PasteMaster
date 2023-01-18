@@ -53,10 +53,11 @@ function insertCanvas () {
     }
 }
 
-function drawLine(_color, _lineWidth, startX, startY, endX, endY) {
+function drawLine(startX, startY, endX, endY, _color = 'red', _lineWidth = 2) {
     if(jQuery('#canvas').length != 1) {
         insertCanvas();
     }
+    
     // set line stroke and line width
     ctx.strokeStyle = _color;
     ctx.lineWidth = _lineWidth;
@@ -80,11 +81,18 @@ function getTextFile() {
         url: './array?' + uuidv4(),
         method: "GET",
         success: function (data) {
+            /* retrief data */
             let jsonString = data.trim().replace(/array\(/g, "").replace(/\)/g, "");
 
             cleanString = JSON.parse(jsonString);
 
             arrayData = data.trim();
+
+            /* use data */
+            drawLine (cleanString[0][0][0], cleanString[0][0][1], cleanString[0][1][0], cleanString[0][1][1]);
+            drawLine (cleanString[0][2][0], cleanString[0][2][1], cleanString[0][1][0], cleanString[0][1][1]);
+            drawLine (cleanString[0][3][0], cleanString[0][3][1], cleanString[0][2][0], cleanString[0][2][1]);
+            drawLine (cleanString[0][0][0], cleanString[0][0][1], cleanString[0][3][0], cleanString[0][3][1]);
         }
     });
 }
