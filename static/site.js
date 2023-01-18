@@ -1,23 +1,26 @@
 // checkmarks
-let checked_pcb_options = [], pcb_options = [];
+let checked_pcb_options = [], unchecked_pcb_options = [], pcb_options = [];
 let pcb_count = 0;
 
 // lines
 let canvas, ctx;
 
 // func die reageert op verandering van .pcb-option
-// jQuery(document).on('click', '.pcb-option', function () {
-    // if (returnAllCheckedPoints().length === pcb_count) {
-        // if (!jQuery('#pcb-options').is(':checked')) {
-        // }
-    // }
-    // console.log('test');
-// });
+jQuery(document).on('click', '.pcb-option', function () {
+    if (returnAllCheckedPoints().length !== pcb_count) {
+        if (!jQuery('#pcb-options').is(':checked')) {
+        }
+    }
+    console.log('test');
+});
 
 function checkBoxChecked (_id) {
     if (jQuery('#' + _id).is(':checked')) {
-        // console.log(_id + "box checked!");
+        console.log(_id + "box checked!");
         checked_pcb_options.push(_id);
+    } else {
+        console.log(_id + "box unchecked!");
+        unchecked_pcb_options.push(_id);
     }
 }
 
