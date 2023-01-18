@@ -77,8 +77,6 @@ function getTextFile() {
     jQuery.ajax({
         url: './array?' + uuidv4(),
         method: "GET",
-        dataType: "json",
-        contentType: "application/json",
         success: function (data) {
             console.log(data);
         }
