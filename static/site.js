@@ -80,11 +80,15 @@ function getTextFile() {
         url: './array?' + uuidv4(),
         method: "GET",
         success: function (data) {
-            arrayData = data;
-            // JSON.stringify
+            let jsonString = data.trim().replace(/array/g, "");
+            jsonString = jsonString.replace('(', "");
+            jsonString = jsonString.replace(')', "");
+
+            arrayData = JSON.stringify(JSON.parse(jsonString));
         }
     });
 }
+
 
 /** genereer een uniek id --> zorg ervoor dat er niet gecached kan worden */
 function uuidv4() {
