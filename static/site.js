@@ -30,24 +30,33 @@ function returnAllCheckedPoints () {
     return checked_pcb_options;
 }
 
-function hasCheckBox (_4dArray) {
+function hasCheckbox (_4dArray) {
     console.log(JSON.stringify(_4dArray));
     // console.log(jQuery('#' + _id).val());
+    if (pcb_options.length === 0) {
+        addCheckbox(_4dArray);
+    } else {
+        pcb_options.forEach( function (_id) { 
+            if (JSON.stringify(_4dArray) !== jQuery('#' + _id).val() ) {
+                addCheckbox(_4dArray);
+            }
+        });
+    }
     
-    // pcb_options.forEach( function (_id) { 
-    //     if (JSON.stringify(_4dArray) !== jQuery('#' + _id).val() ) {
-    //         let pcb_id = pcb_count;
-    //         pcb_count++;
-    //         pcb_options.push(pcb_id);
-        
-    //         jQuery (
-    //             '<p class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
-    //                 '<input type="checkbox" id="' + pcb_id + '" name="' + pcb_id + '" value="' + JSON.stringify(_4dArray) + '" checked> ' +
-    //                 '<label>Box ' + (pcb_id + 1) + ' </label>' +
-    //             '</p>' 
-    //         ) .insertAfter(jQuery('#pcb-options'));
-    //     }
-    // });
+
+}
+
+function addCheckbox(_4dArray) {
+    let pcb_id = pcb_count;
+    pcb_count++;
+    pcb_options.push(pcb_id);
+
+    jQuery (
+        '<p class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
+            '<input type="checkbox" id="' + pcb_id + '" name="' + pcb_id + '" value="' + JSON.stringify(_4dArray) + '" checked> ' +
+            '<label>Box ' + (pcb_id + 1) + ' </label>' +
+        '</p>' 
+    ) .insertAfter(jQuery('#pcb-options'));
 }
 
 function insertCanvas () {
@@ -108,7 +117,7 @@ function getTextFile() {
 
 /** 4dArray: array with 4 corners with x, y as array */
 function drawBox (_4dArray, _color) {
-    hasCheckBox(_4dArray);
+    hasCheckbox(_4dArray);
 
     drawLine (_4dArray[0][0], _4dArray[0][1], _4dArray[1][0], _4dArray[1][1], _color); // draw top-left to top-right
     drawLine (_4dArray[1][0], _4dArray[1][1], _4dArray[2][0], _4dArray[2][1], _color); // draw top-right to bottom-right
