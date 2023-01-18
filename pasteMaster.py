@@ -12,8 +12,9 @@ def homes():
 
 @app.route('/start', methods=['GET'])
 def index():
-   file = open(r'./src/pythonScript/photo.py', 'r').read()
-   return render_template('start.html'), exec(file)
+   # file = open(r'./src/pythonScript/photo.py', 'r').read()
+   # return render_template('start.html'), exec(file)
+   return render_template('start.html')
 
 @app.route('/pcb')
 def get_image():
@@ -21,7 +22,7 @@ def get_image():
    return send_file(filename, mimetype='image/jpg')
 
 @app.route('/array')
-def get_image():
+def get_array():
    filename = 'static/text/test.txt'
    return send_file(filename, mimetype='text/plain')
 
