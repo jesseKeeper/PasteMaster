@@ -91,6 +91,7 @@ function drawBox (_4dArray) {
     jQuery (
         '<p class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
             '<input type="checkbox" id="' + pcb_id + '" name="' + pcb_id + '" value="' + JSON.stringify(_4dArray) + '" checked> ' +
+            '<label>Box ' + (pcb_id + 1) + ' </label>' +
         '</p>' 
     ) .insertAfter(jQuery('#pcb-options'));
     
