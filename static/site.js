@@ -32,18 +32,18 @@ function returnAllCheckedPoints () {
 
 function hasCheckbox (_4dArray) {
     console.log(JSON.stringify(_4dArray));
-    // console.log(jQuery('#' + _id).val());
+
     if (pcb_options.length === 0) {
         addCheckbox(_4dArray);
     } else {
-        pcb_options.forEach( function (_id) { 
-            if (JSON.stringify(_4dArray) !== jQuery('#' + _id).val() ) {
+        for (let i = 0; i < pcb_options.length; i++) {
+            console.log(JSON.stringify(_4dArray) !== jQuery('#' + pcb_options[i]).val());
+            
+            if (JSON.stringify(_4dArray) !== jQuery('#' + pcb_options[i]).val()) {
                 addCheckbox(_4dArray);
             }
-        });
+        }
     }
-    
-
 }
 
 function addCheckbox(_4dArray) {
