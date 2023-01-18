@@ -80,13 +80,9 @@ function getTextFile() {
         url: './array?' + uuidv4(),
         method: "GET",
         success: function (data) {
-            let jsonString = data.trim().replace(/array/g, "");
-            jsonString = jsonString.replace('(', "");
-            jsonString = jsonString.replace(')', "");
-            jsonString = jsonString.replace('(', "");
-            jsonString = jsonString.replace(')', "");
+            let jsonString = data.trim().replace(/array\(/g, "").replace(/\)/g, "");
 
-            cleanString = JSON.stringify(JSON.parse(jsonString));
+            cleanString = JSON.parse(jsonString);
 
             arrayData = data.trim();
         }
