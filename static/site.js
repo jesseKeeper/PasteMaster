@@ -7,8 +7,10 @@ let canvas, ctx;
 
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '.pcb-option', function () {
-    returnAllCheckedPoints();
 
+    clearCanvas()
+    drawArrayOfBoxes(returnAllCheckedPoints());
+    drawArrayOfBoxes(unchecked_pcb_options, 'green');
     
     // if (returnAllCheckedPoints().length !== pcb_count) {
 
@@ -91,9 +93,9 @@ function checkBoxChecked (_id) {
     }
 }
 
-function drawArrayOfBoxes (_arrayOfBoxes) {
+function drawArrayOfBoxes (_arrayOfBoxes, _color = 'red') {
     for(let i = 0; i< _arrayOfBoxes.length; i++){
-        drawBox(_arrayOfBoxes[i]);
+        drawBox(_arrayOfBoxes[i], _color);
     }
 }
 
@@ -127,7 +129,7 @@ function uuidv4() {
     );
 }
 
-function removeCanvas() {
+function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
