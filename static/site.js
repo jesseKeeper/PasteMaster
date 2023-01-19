@@ -21,11 +21,13 @@ function hasCheckbox (_4dArray) {
     if (pcb_options.length === 0) {
         addCheckbox(_4dArray);
     } else {
+        let lastChecked;
         for (let i = 0; i < pcb_options.length; i++) {
             console.log(JSON.stringify(_4dArray) !== jQuery('#' + pcb_options[i]).val());
             console.log(JSON.stringify(_4dArray));
 
-            if (JSON.stringify(_4dArray) !== jQuery('#' + pcb_options[i]).val()) {
+            if ((JSON.stringify(_4dArray) !== jQuery('#' + pcb_options[i]).val()) && JSON.stringify(_4dArray) !== JSON.stringify(lastChecked)) {
+                lastChecked = _4dArray;
                 addCheckbox(_4dArray);
             }
         }
