@@ -1,5 +1,5 @@
 # ttps://flask.palletsprojects.com/en/2.2.x/quickstart/#file-uploads
-
+import json
 from flask import Flask, render_template, send_file
 app = Flask(__name__)
 
@@ -23,8 +23,16 @@ def get_image():
 
 @app.route('/array')
 def get_array():
-   filename = 'static/text/test.txt'
-   return send_file(filename, mimetype='text/plain')
+   detections = [[[32,12],[72, 11],[74, 66],[34, 68]], [[124,   9],[164,   7],[166,  62],[126,  64]], [[170, 307],[207, 307],[207, 355],[170, 355]]]
+
+   dict = {
+    "detections": detections
+   }
+   detections_json = json.dumps(detections)
+
+   print(detections_json)
+   # filename = 'static/text/test.txt'
+   return send_file(detections_json, mimetype='application/json')
 
 @app.errorhandler(404)
 def page_not_found(error):

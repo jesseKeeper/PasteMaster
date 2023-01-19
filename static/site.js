@@ -64,7 +64,6 @@ function getTextFile() {
     });
 }
 
-
 /** 4dArray: array with 4 corners with x, y as array */
 function drawBox (_4dArray, _color) {
     hasCheckbox(_4dArray);
@@ -138,7 +137,7 @@ function setCheckbox (_id, state = true) {
 }
 
 function drawLine(startX, startY, endX, endY, _color = 'red', _lineWidth = 2) {
-    if(jQuery('#canvas').length != 1) {
+    if (jQuery('#canvas').length != 1) {
         insertCanvas();
     }
 
