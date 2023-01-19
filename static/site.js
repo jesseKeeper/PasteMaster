@@ -7,6 +7,8 @@ let canvas, ctx;
 
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '.pcb-option', function () {
+    returnAllCheckedPoints();
+
     
     // if (returnAllCheckedPoints().length !== pcb_count) {
 
@@ -21,7 +23,7 @@ function hasCheckbox (_4dArray) {
     if (pcb_options.length === 0) {
         addCheckbox(_4dArray);
     } else {
-        let lastChecked;
+        let lastChecked; // slechte manier die werkt =)
         for (let i = 0; i < pcb_options.length; i++) {
             console.log(JSON.stringify(_4dArray) !== jQuery('#' + pcb_options[i]).val());
             console.log(JSON.stringify(_4dArray));
@@ -60,11 +62,15 @@ function getTextFile() {
             arrayData = JSON.parse(data.trim());
 
             /* use data */
-            drawBox(arrayData[0]);
-            drawBox(arrayData[1]);
-            drawBox(arrayData[2]);
+            drawArrayOfBoxes(arrayData);
         }
     });
+}
+
+function drawArrayOfBoxes (_arrayOfBoxes) {
+    for(let i = 0; i< _arrayOfBoxes.length; i++){
+        drawBox(_arrayOfBoxes[i]);
+    }
 }
 
 /** 4dArray: array with 4 corners with x, y as array */
