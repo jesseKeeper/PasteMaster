@@ -7,11 +7,12 @@ let canvas, ctx;
 
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '.pcb-option', function () {
-    if (returnAllCheckedPoints().length !== pcb_count) {
+    
+    // if (returnAllCheckedPoints().length !== pcb_count) {
 
-    } else {
+    // } else {
 
-    }
+    // }
 });
 
 function checkBoxChecked (_id) {
@@ -24,8 +25,12 @@ function checkBoxChecked (_id) {
     }
 }
 
+/** returns all checked checkboxes
+ * unchecked can be retrieved by using unchecked_pcb_options!
+ */
 function returnAllCheckedPoints () {
     checked_pcb_options = [];
+    unchecked_pcb_options = [];
     pcb_options.forEach(box => checkBoxChecked (box));
     return checked_pcb_options;
 }
@@ -41,7 +46,6 @@ function hasCheckbox (_4dArray) {
             console.log(JSON.stringify(_4dArray));
 
             if (JSON.stringify(_4dArray) !== jQuery('#' + pcb_options[i]).val()) {
-                console.log('added array: ' + _4dArray);
                 addCheckbox(_4dArray);
             }
         }
@@ -59,6 +63,8 @@ function addCheckbox(_4dArray) {
             '<label>Box ' + (pcb_id + 1) + ' </label>' +
         '</p>' 
     ) .insertAfter(jQuery('#pcb-options'));
+    
+    console.log('added array: ' + _4dArray);
 }
 
 function insertCanvas () {
@@ -148,7 +154,14 @@ jQuery (function() {
 });
 
 function removeCanvas() {
-    if (jQuery("#canvas").length == 1) {
-        jQuery("#canvas").remove();
-    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+/** _id: target checkbox ID
+ * state: default true 
+ *      set true --> box will be set to checked
+ *      set false --> box will be unchecked
+ */
+function setCheckbox (_id, state = true) {
+    jQuery('#' + _id).prop("checked", state);
 }
