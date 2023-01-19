@@ -15,26 +15,6 @@ jQuery(document).on('click', '.pcb-option', function () {
     // }
 });
 
-function checkBoxChecked (_id) {
-    if (jQuery('#' + _id).is(':checked')) {
-        console.log(_id + "box checked!");
-        checked_pcb_options.push(_id);
-    } else {
-        console.log(_id + "box unchecked!");
-        unchecked_pcb_options.push(_id);
-    }
-}
-
-/** returns all checked checkboxes
- * unchecked can be retrieved by using unchecked_pcb_options!
- */
-function returnAllCheckedPoints () {
-    checked_pcb_options = [];
-    unchecked_pcb_options = [];
-    pcb_options.forEach(box => checkBoxChecked (box));
-    return checked_pcb_options;
-}
-
 function hasCheckbox (_4dArray) {
     console.log(JSON.stringify(_4dArray));
 
@@ -67,17 +47,88 @@ function addCheckbox(_4dArray) {
     console.log('added array: ' + _4dArray);
 }
 
-function insertCanvas () {
-    // jQuery ('<canvas width="550" height="413" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
-    jQuery ('<canvas width="380" height="413" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
 
-    var position = jQuery("#pcb_image").offset();
-    if(position) {
-        jQuery('#canvas').css({ position:'absolute', top:position.top, left: position.left});
+let arrayData, cleanString;
+function getTextFile() {
+    jQuery.ajax({
+        url: './array?' + uuidv4(),
+        method: "GET",
+        success: function (data) {
+            /* retrief data */
+            arrayData = JSON.parse(data.trim());
 
-        canvas = document.querySelector('#canvas');
-        ctx = canvas.getContext('2d');
+            /* use data */
+            drawBox(arrayData[0]);
+            drawBox(arrayData[1]);
+            drawBox(arrayData[2]);
+        }
+    });
+}
+
+/** 4dArray: array with 4 corners with x, y as array */
+function drawBox (_4dArray, _color) {
+    hasCheckbox(_4dArray);
+
+    drawLine (_4dArray[0][0], _4dArray[0][1], _4dArray[1][0], _4dArray[1][1], _color); // draw top-left to top-right
+    drawLine (_4dArray[1][0], _4dArray[1][1], _4dArray[2][0], _4dArray[2][1], _color); // draw top-right to bottom-right
+    drawLine (_4dArray[2][0], _4dArray[2][1], _4dArray[3][0], _4dArray[3][1], _color); // draw bottem-right to bottem-left
+    drawLine (_4dArray[3][0], _4dArray[3][1], _4dArray[0][0], _4dArray[0][1], _color); // draw bottem-left to top-left
+}
+
+/* SIMPLE FUCNTIONS */
+
+/** checks if checkbox with given _id is checked */
+function checkBoxChecked (_id) {
+    if (jQuery('#' + _id).is(':checked')) {
+        console.log(_id + "box checked!");
+        checked_pcb_options.push(_id);
+    } else {
+        console.log(_id + "box unchecked!");
+        unchecked_pcb_options.push(_id);
     }
+}
+
+/** returns all checked checkboxes
+ * unchecked can be retrieved by using unchecked_pcb_options!
+ */
+function returnAllCheckedPoints () {
+    checked_pcb_options = [];
+    unchecked_pcb_options = [];
+    pcb_options.forEach(box => checkBoxChecked (box));
+    return checked_pcb_options;
+}
+
+/** bij .header click ga naar homepage */
+jQuery(document).on('click', '.header', function () {
+    window.location.replace("./");
+});
+
+/* Bij het laden van de pagina */
+jQuery (function() {
+    /* alleen bij het start scherm */
+    if (jQuery('#start-page').length === 1) {
+        // insertImage ();
+    }
+});
+
+/** genereer een uniek id --> zorg ervoor dat er niet gecached kan worden */
+function uuidv4() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+}
+
+function removeCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+/** _id: target checkbox ID
+ * state: default true 
+ *      set true --> box will be set to checked
+ *      set false --> box will be unchecked
+ */
+function setCheckbox (_id, state = true) {
+    jQuery('#' + _id).prop("checked", state);
 }
 
 function drawLine(startX, startY, endX, endY, _color = 'red', _lineWidth = 2) {
@@ -101,67 +152,16 @@ function insertImage () {
     jQuery ('<img id="pcb_image" src="./pcb?' + uuidv4() + '" alt="pcb image" class="pcb-image"></img>').insertBefore('#pcb_image');
 }
 
-let arrayData, cleanString;
+/** Insert canvas, needed before drawLine can be used */
+function insertCanvas () {
+    // jQuery ('<canvas width="550" height="413" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
+    jQuery ('<canvas width="380" height="413" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
 
-function getTextFile() {
-    jQuery.ajax({
-        url: './array?' + uuidv4(),
-        method: "GET",
-        success: function (data) {
-            /* retrief data */
-            let jsonString = data.trim().replace(/array\(/g, "").replace(/\)/g, "");
+    var position = jQuery("#pcb_image").offset();
+    if(position) {
+        jQuery('#canvas').css({ position:'absolute', top:position.top, left: position.left});
 
-            cleanString = JSON.parse(jsonString);
-
-            arrayData = data.trim();
-
-            /* use data */
-            drawBox(cleanString[0]);
-            drawBox(cleanString[1]);
-            drawBox(cleanString[2]);
-        }
-    });
-}
-
-/** 4dArray: array with 4 corners with x, y as array */
-function drawBox (_4dArray, _color) {
-    hasCheckbox(_4dArray);
-
-    drawLine (_4dArray[0][0], _4dArray[0][1], _4dArray[1][0], _4dArray[1][1], _color); // draw top-left to top-right
-    drawLine (_4dArray[1][0], _4dArray[1][1], _4dArray[2][0], _4dArray[2][1], _color); // draw top-right to bottom-right
-    drawLine (_4dArray[2][0], _4dArray[2][1], _4dArray[3][0], _4dArray[3][1], _color); // draw bottem-right to bottem-left
-    drawLine (_4dArray[3][0], _4dArray[3][1], _4dArray[0][0], _4dArray[0][1], _color); // draw bottem-left to top-left
-}
-
-/** genereer een uniek id --> zorg ervoor dat er niet gecached kan worden */
-function uuidv4() {
-    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
-  }
-
-/** bij .header click ga naar homepage */
-jQuery(document).on('click', '.header', function () {
-    window.location.replace("./");
-});
-
-/* Bij het laden van de pagina */
-jQuery (function() {
-    /* alleen bij het start scherm */
-    if (jQuery('#start-page').length === 1) {
-        // insertImage ();
+        canvas = document.querySelector('#canvas');
+        ctx = canvas.getContext('2d');
     }
-});
-
-function removeCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-/** _id: target checkbox ID
- * state: default true 
- *      set true --> box will be set to checked
- *      set false --> box will be unchecked
- */
-function setCheckbox (_id, state = true) {
-    jQuery('#' + _id).prop("checked", state);
 }
