@@ -67,11 +67,6 @@ function getTextFile() {
     });
 }
 
-function drawArrayOfBoxes (_arrayOfBoxes) {
-    for(let i = 0; i< _arrayOfBoxes.length; i++){
-        drawBox(_arrayOfBoxes[i]);
-    }
-}
 
 /** 4dArray: array with 4 corners with x, y as array */
 function drawBox (_4dArray, _color) {
@@ -89,10 +84,16 @@ function drawBox (_4dArray, _color) {
 function checkBoxChecked (_id) {
     if (jQuery('#' + _id).is(':checked')) {
         console.log(_id + "box checked!");
-        checked_pcb_options.push(_id);
+        checked_pcb_options.push(JSON.parse(jQuery('#' + _id).val()));
     } else {
         console.log(_id + "box unchecked!");
-        unchecked_pcb_options.push(_id);
+        unchecked_pcb_options.push(JSON.parse(jQuery('#' + _id).val()));
+    }
+}
+
+function drawArrayOfBoxes (_arrayOfBoxes) {
+    for(let i = 0; i< _arrayOfBoxes.length; i++){
+        drawBox(_arrayOfBoxes[i]);
     }
 }
 
