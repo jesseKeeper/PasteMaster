@@ -20,12 +20,13 @@ function hasCheckbox (_4dArray) {
         addCheckbox(_4dArray);
     } else {
         let lastChecked; // slechte manier die werkt =)
+
         for (let i = 0; i < pcb_options.length; i++) {
             console.log(JSON.stringify(_4dArray) !== JSON.stringify(pcb_options[i]));
             console.log(JSON.stringify(_4dArray));
 
-            if ((JSON.stringify(_4dArray) !== JSON.stringify(pcb_options[i])) /* && JSON.stringify(_4dArray) !== JSON.stringify(lastChecked) */) {
-                // lastChecked = _4dArray;
+            if ((JSON.stringify(_4dArray) !== JSON.stringify(pcb_options[i])) && JSON.stringify(_4dArray) !== JSON.stringify(lastChecked) ) {
+                lastChecked = _4dArray;
                 addCheckbox(_4dArray);
             }
         }
