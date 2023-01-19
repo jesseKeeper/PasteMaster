@@ -7,16 +7,10 @@ let canvas, ctx;
 
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '.pcb-option', function () {
+    clearCanvas(); // clear canvas to 'overwrite' the other draws
+    drawArrayOfBoxes(returnAllCheckedPoints()); // draw the array 
 
-    clearCanvas()
-    drawArrayOfBoxes(returnAllCheckedPoints());
     drawArrayOfBoxes(unchecked_pcb_options, 'green');
-    
-    // if (returnAllCheckedPoints().length !== pcb_count) {
-
-    // } else {
-
-    // }
 });
 
 function hasCheckbox (_4dArray) {
@@ -27,11 +21,11 @@ function hasCheckbox (_4dArray) {
     } else {
         let lastChecked; // slechte manier die werkt =)
         for (let i = 0; i < pcb_options.length; i++) {
-            console.log(JSON.stringify(_4dArray) !== jQuery('#' + pcb_options[i]).val());
+            console.log(JSON.stringify(_4dArray) !== JSON.stringify(pcb_options[i]));
             console.log(JSON.stringify(_4dArray));
 
-            if ((JSON.stringify(_4dArray) !== jQuery('#' + pcb_options[i]).val()) && JSON.stringify(_4dArray) !== JSON.stringify(lastChecked)) {
-                lastChecked = _4dArray;
+            if ((JSON.stringify(_4dArray) !== JSON.stringify(pcb_options[i])) /* && JSON.stringify(_4dArray) !== JSON.stringify(lastChecked) */) {
+                // lastChecked = _4dArray;
                 addCheckbox(_4dArray);
             }
         }
