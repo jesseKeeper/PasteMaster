@@ -1,3 +1,3 @@
 ./Kickstarter/*
-./static/image/*.jpg
+# ./static/image/*.jpg
 ./static/text/*.txt
