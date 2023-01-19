@@ -1,6 +1,7 @@
 # ttps://flask.palletsprojects.com/en/2.2.x/quickstart/#file-uploads
-import json
 from flask import Flask, render_template, send_file
+import json
+
 app = Flask(__name__)
 
 if __name__ == '__main__':
@@ -30,9 +31,9 @@ def get_array():
    }
    detections_json = json.dumps(detections)
 
-   print(detections_json)
+   return (detections_json)
    # filename = 'static/text/test.txt'
-   return send_file(detections_json, mimetype='application/json')
+   # return send_file(detections_json, mimetype='application/json')
 
 @app.errorhandler(404)
 def page_not_found(error):
