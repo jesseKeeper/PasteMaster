@@ -160,10 +160,12 @@ function insertImage () {
 
 /** Insert canvas, needed before drawLine can be used */
 function insertCanvas () {
-    // jQuery ('<canvas width="550" height="413" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
-    jQuery ('<canvas width="870" height="651" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
+    const img = jQuery("#pcb_image");
+    var position = .offset();
 
-    var position = jQuery("#pcb_image").offset();
+    // jQuery ('<canvas width="550" height="413" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
+    jQuery ('<canvas width="' + img.scrollWidth + '" height="' + img.scrollHeight + '" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
+
     if(position) {
         jQuery('#canvas').css({ position:'absolute', top:position.top, left: position.left});
 
