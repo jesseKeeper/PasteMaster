@@ -161,7 +161,7 @@ function insertImage () {
 /** Insert canvas, needed before drawLine can be used */
 function insertCanvas () {
     const img = jQuery("#pcb_image");
-    var position = .offset();
+    var position = img.offset();
 
     // jQuery ('<canvas width="550" height="413" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
     jQuery ('<canvas width="' + img.scrollWidth + '" height="' + img.scrollHeight + '" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
