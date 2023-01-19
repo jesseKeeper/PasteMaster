@@ -67,7 +67,7 @@ function getTextFile() {
 /** 4dArray: array with 4 corners with x, y as array */
 function drawBox (_4dArray, _color) {
     hasCheckbox(_4dArray);
-    const refactoringValue = 0.6; // scaling the image by 70%
+    const refactoringValue = 0.3485;
 
     drawLine ((_4dArray[0][0] * refactoringValue), (_4dArray[0][1] * refactoringValue), (_4dArray[1][0] * refactoringValue), (_4dArray[1][1] * refactoringValue), _color); // draw top-left to top-right
     drawLine ((_4dArray[1][0] * refactoringValue), (_4dArray[1][1] * refactoringValue), (_4dArray[2][0] * refactoringValue), (_4dArray[2][1] * refactoringValue), _color); // draw top-right to bottom-right
@@ -163,7 +163,7 @@ function insertCanvas () {
     var position = jQuery("#pcb_image").offset();
 
     // jQuery ('<canvas width="550" height="413" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
-    jQuery ('<canvas width="1150" height="851" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
+    jQuery ('<canvas width="1150" height="860" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
 
     if(position) {
         jQuery('#canvas').css({ position:'absolute', top:position.top, left: position.left});
