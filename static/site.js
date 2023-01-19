@@ -67,11 +67,12 @@ function getTextFile() {
 /** 4dArray: array with 4 corners with x, y as array */
 function drawBox (_4dArray, _color) {
     hasCheckbox(_4dArray);
+    const refactoringValue = 0.7; // scaling the image by 70%
 
-    drawLine (_4dArray[0][0], _4dArray[0][1], _4dArray[1][0], _4dArray[1][1], _color); // draw top-left to top-right
-    drawLine (_4dArray[1][0], _4dArray[1][1], _4dArray[2][0], _4dArray[2][1], _color); // draw top-right to bottom-right
-    drawLine (_4dArray[2][0], _4dArray[2][1], _4dArray[3][0], _4dArray[3][1], _color); // draw bottem-right to bottem-left
-    drawLine (_4dArray[3][0], _4dArray[3][1], _4dArray[0][0], _4dArray[0][1], _color); // draw bottem-left to top-left
+    drawLine (_4dArray[0][0] * refactoringValue, _4dArray[0][1] * refactoringValue, _4dArray[1][0] * refactoringValue, _4dArray[1][1] * refactoringValue, _color); // draw top-left to top-right
+    drawLine (_4dArray[1][0] * refactoringValue, _4dArray[1][1] * refactoringValue, _4dArray[2][0] * refactoringValue, _4dArray[2][1] * refactoringValue, _color); // draw top-right to bottom-right
+    drawLine (_4dArray[2][0] * refactoringValue, _4dArray[2][1] * refactoringValue, _4dArray[3][0] * refactoringValue, _4dArray[3][1] * refactoringValue, _color); // draw bottem-right to bottem-left
+    drawLine (_4dArray[3][0] * refactoringValue, _4dArray[3][1] * refactoringValue, _4dArray[0][0] * refactoringValue, _4dArray[0][1] * refactoringValue, _color); // draw bottem-left to top-left
 }
 
 /* SIMPLE FUCNTIONS */
