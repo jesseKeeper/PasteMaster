@@ -23,7 +23,7 @@ def get_image():
 
 @app.route('/array')
 def get_array():
-   filename = 'static/text/test2.txt'
+   filename = 'static/text/test.txt'
    return send_file(filename, mimetype='text/plain')
 
 @app.errorhandler(404)
