@@ -13,28 +13,21 @@ jQuery(document).on('click', '.pcb-option', function () {
     drawArrayOfBoxes(unchecked_pcb_options, 'green');
 });
 
-jQuery(document).on('hover', '.pcb-option', function () {
-    console.log('test');
-    ctx.fillStyle = "green";
-    ctx.fillRect(20, 10, 150, 100);
-});
+// jQuery(document).on('hover', '.pcb-option', function () {
+//     console.log('test');
+//     ctx.fillStyle = "green";
+//     ctx.fillRect(20, 10, 150, 100);
+// });
 
 function hasCheckbox (_4dArray) {
-    console.log(JSON.stringify(_4dArray));
-
     if (pcb_options.length === 0) {
         addCheckbox(_4dArray);
     } else {
-        let lastChecked; // slechte manier die werkt =)
+        console.log(!pcb_options.includes(JSON.stringify(_4dArray)));
+        console.log(JSON.stringify(_4dArray));
 
-        for (let i = 0; i < pcb_options.length; i++) {
-            console.log(JSON.stringify(_4dArray) !== JSON.stringify(pcb_options[i]));
-            console.log(JSON.stringify(_4dArray));
-
-            if ((JSON.stringify(_4dArray) !== JSON.stringify(pcb_options[i])) && JSON.stringify(_4dArray) !== JSON.stringify(lastChecked) ) {
-                lastChecked = _4dArray;
-                addCheckbox(_4dArray);
-            }
+        if (!pcb_options.includes(JSON.stringify(_4dArray))) {
+            addCheckbox(_4dArray);
         }
     }
 }
