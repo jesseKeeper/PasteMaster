@@ -78,10 +78,10 @@ function drawBox (_4dArray, _color) {
 /** checks if checkbox with given _id is checked */
 function checkBoxChecked (_id) {
     if (jQuery('#' + _id).is(':checked')) {
-        console.log(_id + "box checked!");
+        // console.log(_id + "box checked!");
         checked_pcb_options.push(JSON.parse(jQuery('#' + _id).val()));
     } else {
-        console.log(_id + "box unchecked!");
+        // console.log(_id + "box unchecked!");
         unchecked_pcb_options.push(JSON.parse(jQuery('#' + _id).val()));
     }
 }
@@ -160,7 +160,7 @@ function insertImage () {
 function insertCanvas () {
     var position = jQuery("#pcb_image").offset();
 
-    jQuery ('<canvas width="'+ (screen.width * 0.6) +'" height="900" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
+    jQuery ('<canvas width="'+ (screen.width * 0.6) +'" height="860" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
     // jQuery ('<canvas width="1150" height="860" id="canvas">The browser doesn\'t support the canvas element</canvas>').insertAfter('#pcb_image');
 
     if(position) {
