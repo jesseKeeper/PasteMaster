@@ -1,6 +1,7 @@
 import os
 cmd = 'git pull'
 os.system(cmd)
+
 print('First time after power down:')
 
 print('export FLASK_ENV=development')
