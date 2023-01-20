@@ -13,6 +13,13 @@ jQuery(document).on('click', '.pcb-option', function () {
     drawArrayOfBoxes(unchecked_pcb_options, 'green');
 });
 
+jQuery(".pcb-option").on("mouseenter", function () {
+    console.log('mouse enter');
+});
+jQuery(".pcb-option").on("mouseleave", function () {
+    console.log('mouse leave');
+});
+
 // jQuery(document).on('hover', '.pcb-option', function () {
 //     console.log('test');
 //     ctx.fillStyle = "green";
@@ -78,6 +85,7 @@ function drawBox (_4dArray, _color) {
 /** checks if checkbox with given _id is checked */
 function checkBoxChecked (_id) {
     if (jQuery('#' + _id).is(':checked')) {
+
         // console.log(_id + "box checked!");
         checked_pcb_options.push(JSON.parse(jQuery('#' + _id).val()));
     } else {
