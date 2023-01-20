@@ -74,7 +74,7 @@ function getTextFile() {
 function drawBox (_4dArray, _color) {
     hasCheckbox(_4dArray);
     // const refactoringValue = 0.3485;
-    const refactoringValue = 0.0215 - (0.5 * 0.6);
+    const refactoringValue = (0.5 * 0.6) - 0.0215;
 
     drawLine ((_4dArray[0][0] * refactoringValue), (_4dArray[0][1] * refactoringValue), (_4dArray[1][0] * refactoringValue), (_4dArray[1][1] * refactoringValue), _color); // draw top-left to top-right
     drawLine ((_4dArray[1][0] * refactoringValue), (_4dArray[1][1] * refactoringValue), (_4dArray[2][0] * refactoringValue), (_4dArray[2][1] * refactoringValue), _color); // draw top-right to bottom-right
