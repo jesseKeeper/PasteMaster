@@ -1,5 +1,5 @@
 // checkmarks
-let checked_pcb_options = [], unchecked_pcb_options = [], pcb_options = [];
+let checked_pcb_options = [], unchecked_pcb_options = [], pcb_options = [], pcb_options_value = [];
 let pcb_count = 0;
 
 // lines
@@ -23,10 +23,7 @@ function hasCheckbox (_4dArray) {
     if (pcb_options.length === 0) {
         addCheckbox(_4dArray);
     } else {
-        console.log(!pcb_options.includes(JSON.stringify(_4dArray)));
-        console.log(JSON.stringify(_4dArray));
-
-        if (!pcb_options.includes(JSON.stringify(_4dArray))) {
+        if (!pcb_options_value.includes(JSON.stringify(_4dArray))) {
             addCheckbox(_4dArray);
         }
     }
@@ -36,6 +33,7 @@ function addCheckbox(_4dArray) {
     let pcb_id = pcb_count;
     pcb_count++;
     pcb_options.push(pcb_id);
+    pcb_options_value.push(JSON.stringify(_4dArray));
 
     jQuery (
         '<p class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
