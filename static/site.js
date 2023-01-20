@@ -13,6 +13,11 @@ jQuery(document).on('click', '.pcb-option', function () {
     drawArrayOfBoxes(unchecked_pcb_options, 'green');
 });
 
+jQuery(document).on('hover', '.pcb-option', function () {
+    ctx.fillStyle = "green";
+    ctx.fillRect(20, 10, 150, 100);
+});
+
 function hasCheckbox (_4dArray) {
     console.log(JSON.stringify(_4dArray));
 
