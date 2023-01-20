@@ -14,6 +14,7 @@ jQuery(document).on('click', '.pcb-option', function () {
 });
 
 jQuery(document).on('hover', '.pcb-option', function () {
+    console.log('test');
     ctx.fillStyle = "green";
     ctx.fillRect(20, 10, 150, 100);
 });
