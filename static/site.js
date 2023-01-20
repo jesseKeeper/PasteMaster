@@ -7,18 +7,9 @@ let canvas, ctx;
 
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '.pcb-option', function () {
-    clearCanvas(); // clear canvas to 'overwrite' the other draws
-    drawArrayOfBoxes(returnAllCheckedPoints()); // draw the array 
-
-    drawArrayOfBoxes(unchecked_pcb_options, 'green');
+    updateBox ()
 });
 
-jQuery(".pcb-option").on("mouseenter", function () {
-    console.log('mouse enter');
-});
-jQuery(".pcb-option").on("mouseleave", function () {
-    console.log('mouse leave');
-});
 
 // jQuery(document).on('hover', '.pcb-option', function () {
 //     console.log('test');
@@ -177,4 +168,11 @@ function insertCanvas () {
         canvas = document.querySelector('#canvas');
         ctx = canvas.getContext('2d');
     }
+}
+
+function updateBox () {
+    clearCanvas(); // clear canvas to 'overwrite' the other draws
+    drawArrayOfBoxes(returnAllCheckedPoints()); // draw the array 
+
+    drawArrayOfBoxes(unchecked_pcb_options, 'green');
 }

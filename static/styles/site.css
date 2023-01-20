@@ -64,9 +64,9 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-.pcb-option:hover {
+/* .pcb-option:hover {
   background-color: rgba(32, 178, 34, 0.6);
-}
+} */
 
 .pcb-text {
   float: left;
