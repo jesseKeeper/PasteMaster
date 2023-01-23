@@ -24,11 +24,11 @@ jQuery(document).on('click', '#start-paste', function () {
     jQuery.ajax({
         url: './run',
         method: "POST",
+        dataType: "json",
+        contentType: "application/json",
         data: {
             "coords": JSON.stringify(pcb_printer_coords)
         },        
-        dataType: "json",
-        contentType: "application/json",
         success: function (data) {
             console.log('confirmed send!')
         }
