@@ -4,7 +4,10 @@ import time
 from picamera2 import Picamera2
 
 class Printer:
+    
+    time.sleep(5)
     picam2 = Picamera2()
+    time.sleep(5)
 
     def __init__(self, port, baudrate, z_save, z_dispense, camera = True):
         self.port = port
