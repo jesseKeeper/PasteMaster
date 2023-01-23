@@ -63,7 +63,7 @@ def run():
    # args2 = json.loads(args)
 
    # printer1.dispense_at_points(args2)
-   return args
+   return render_template('index.html')
 
 @app.errorhandler(404)
 def page_not_found(error):
