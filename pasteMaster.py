@@ -4,7 +4,7 @@ import printer
 import detect
 import time
 
-from flask import Flask, render_template, send_file
+from flask import Flask, render_template, send_file, request
 app = Flask(__name__)
 
 printer1 = printer.Printer("/dev/ttyUSB0", 115200, 55, 50, False)
@@ -16,6 +16,11 @@ offset = (69.9, 11.2, 0)
 
 detector = detect.Detector(demoPadRange, demoPCBRange, pixelsPerMilimeter, offset)
 detections = []
+
+if printer1.camera:
+   filename = 'static/image/camera.jpg'
+else:
+   filename = 'static/image/demoPCB.jpg'
 
 if __name__ == '__main__':
    app.run()
@@ -30,17 +35,14 @@ def index():
    printer1.make_photo()
 
    time.sleep(1)
-   detections = detector.detect("static/image/camera.jpg", (75, 150, 100), (3280, 2464))
+   detections = detector.detect(filename, (75, 150, 100), (3280, 2464))
    
    return render_template('start.html')
 
 @app.route('/pcb')
 def get_image():
-   if printer1.camera:
-      filename = 'static/image/camera.jpg'
-   else:
-      filename = 'static/image/demoPCB.jpg'
-   
+   global filename
+
    return send_file(filename, mimetype='image/jpg')
 
 @app.route('/array')
@@ -54,9 +56,9 @@ def get_array():
    detections_json = json.dumps(dict)
    return (detections_json)
 
-@app.route('/run')
+@app.route('/run', methods=['POST'])
 def run():
-   
+   print (request)
 
 @app.errorhandler(404)
 def page_not_found(error):

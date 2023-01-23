@@ -1,5 +1,5 @@
 // checkmarks
-let checked_pcb_options = [], unchecked_pcb_options = [], pcb_options = [], pcb_options_value = [];
+let checked_pcb_options = [], unchecked_pcb_options = [], pcb_options = [], pcb_options_value = [], pcb_printer_coords = [];
 let pcb_count = 0;
 
 // lines
@@ -8,6 +8,22 @@ let canvas, ctx;
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '.pcb-option', function () {
     updateBox ()
+});
+
+// func die reageert op verandering van .pcb-option
+jQuery(document).on('click', '#start-paste', function () {
+    jQuery.ajax({
+        url: './run',
+        method: "POST",
+        data: {
+            "coords": lat
+        },        
+        dataType: "json",
+        contentType: "application/json",
+        success: function (data) {
+            console.log('confirmed send!')
+        }
+    });
 });
 
 
@@ -54,7 +70,7 @@ function getTextFile() {
             webArrayData = JSON.parse(data['web_detections'].trim());
             printerArrayData = JSON.parse(data['printer_detections'].trim());
             combinedArray = [];
-            
+
             for (let i = 0; i < webArrayData.length; i++) {
                 combinedArray[JSON.stringify(webArrayData[i])][printerArrayData[i]]
             }
@@ -85,7 +101,10 @@ function checkBoxChecked (_id) {
     if (jQuery('#' + _id).is(':checked')) {
 
         // console.log(_id + "box checked!");
+        // pcb_printer_coords.push(JSON.stringify)
+        console.log(jQuery('#' + _id));
         checked_pcb_options.push(JSON.parse(jQuery('#' + _id).val()));
+        
     } else {
         // console.log(_id + "box unchecked!");
         unchecked_pcb_options.push(JSON.parse(jQuery('#' + _id).val()));
