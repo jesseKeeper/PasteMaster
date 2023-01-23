@@ -64,8 +64,6 @@ function addCheckbox(_4dArray) {
             '<label>Box ' + (pcb_id + 1) + ' </label>' +
         '</p>' 
     ) .insertAfter(jQuery('#pcb-options'));
-    
-    console.log(JSON.stringify(_4dArray));
 }
 
 
@@ -109,14 +107,8 @@ function drawBox (_4dArray, _color) {
 /** checks if checkbox with given _id is checked */
 function checkBoxChecked (_id) {
     if (jQuery('#' + _id).is(':checked')) {
-
-        // console.log(_id + "box checked!");
-        // pcb_printer_coords.push(JSON.stringify)
-        // console.log(jQuery('#' + _id));
         checked_pcb_options.push(JSON.parse(jQuery('#' + _id).val()));
-        
     } else {
-        // console.log(_id + "box unchecked!");
         unchecked_pcb_options.push(JSON.parse(jQuery('#' + _id).val()));
     }
 }
