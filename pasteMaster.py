@@ -26,7 +26,7 @@ def homes():
 
 @app.route('/start', methods=['GET'])
 def index():
-   # printer1.make_photo()
+   printer1.make_photo()
 
    time.sleep(1)
    # detections = detector.detect("static/image/view.jpg", (75, 150, 100), (3280, 2464))

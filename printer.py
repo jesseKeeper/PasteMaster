@@ -56,6 +56,6 @@ class Printer:
         self.move_printer(0, 0, 100, 500)
         self.move_printer(75, 150, 100, 5000)
         time.sleep(2)
-        self.picam2.start_and_capture_file("static/image/view.jpg")
+        # self.picam2.start_and_capture_file("static/image/view.jpg")
         time.sleep(2)
-        self.picam2.close()
+        # self.picam2.close()
