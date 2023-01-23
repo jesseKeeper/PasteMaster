@@ -7,7 +7,7 @@ import time
 from flask import Flask, render_template, send_file, request
 app = Flask(__name__)
 
-# printer1 = printer.Printer("/dev/ttyUSB0", 115200, 55, 50)
+printer1 = printer.Printer("/dev/ttyUSB0", 115200, 55, 50)
 
 demoPadRange = [[2, 0, 0], [55, 255, 255]]
 demoPCBRange = [[135, 100, 78], [160, 255, 255]]
@@ -59,11 +59,9 @@ def get_array():
 @app.route('/run', methods=['POST'])
 def run():
    args = request.get_json()
-   print (args)
-   # args2 = json.loads(args)
-
-   # printer1.dispense_at_points(args2)
-   return render_template('index.html')
+   printer1.dispense_at_points(args)
+   
+   return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
 @app.errorhandler(404)
 def page_not_found(error):
