@@ -1,7 +1,7 @@
 import serial as pyserial
 import threading
 import time
-import photo
+from photo import capture 
 
 class Printer:
     def __init__(self, port, baudrate, z_save, z_dispense, camera = True):
@@ -55,4 +55,4 @@ class Printer:
     def make_photo(self):
         self.move_printer(0, 0, 100, 500)
         self.move_printer(75, 150, 100, 5000)
-        photo.capture()
+        capture()
