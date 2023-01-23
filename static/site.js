@@ -109,7 +109,7 @@ function checkBoxChecked (_id) {
 
         // console.log(_id + "box checked!");
         // pcb_printer_coords.push(JSON.stringify)
-        console.log(jQuery('#' + _id));
+        // console.log(jQuery('#' + _id));
         checked_pcb_options.push(JSON.parse(jQuery('#' + _id).val()));
         
     } else {
