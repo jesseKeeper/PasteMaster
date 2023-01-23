@@ -79,9 +79,9 @@ function getTextFile() {
             printerArrayData = parsedJSON['printer_detections'];
             combinedArray = [];
 
-            for (let i = 0; i < webArrayData.length; i++) {
-                combinedArray[JSON.stringify(webArrayData[i])][printerArrayData[i]]
-            }
+            // for (let i = 0; i < webArrayData.length; i++) {
+            //     combinedArray[JSON.stringify(webArrayData[i])][printerArrayData[i]]
+            // }
 
             /* use data */
             drawArrayOfBoxes(webArrayData);
