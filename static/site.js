@@ -62,7 +62,7 @@ function addCheckbox(_4dArray) {
         '</p>' 
     ) .insertAfter(jQuery('#pcb-options'));
     
-    // console.log('added array: ' + _4dArray);
+    console.log(_4dArray);
 }
 
 
