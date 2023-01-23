@@ -21,13 +21,16 @@ jQuery(document).on('click', '#start-paste', function () {
     pcb_printer_coords = [];
     returnAllCheckedPoints().forEach(element => pcb_printer_coords.push(combinedArray[JSON.stringify(element)]));
 
+    toggle_page('hide-pcb');
+    toggle_page('unhide-pcb');
+    
     jQuery.ajax({
         url: './run',
         data : JSON.stringify(pcb_printer_coords),
         contentType : 'application/json',
         type : 'POST',       
         success: function (data) {
-            console.log('confirmed send!')
+            console.log('confirmed send!');
         }
     });
 });
@@ -201,4 +204,13 @@ function updateBox () {
     drawArrayOfBoxes(returnAllCheckedPoints()); // draw the array 
 
     drawArrayOfBoxes(unchecked_pcb_options, 'green');
+}
+
+function toggle_page(_id) {
+    var x = document.getElementById(_id);
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {  
+        x.style.display = "none";
+    }
 }
