@@ -11,8 +11,8 @@ class Printer:
         self.z_dispense = z_dispense
         self.status = "ready"
         self.serial = pyserial.Serial(self.port, self.baud, timeout=0)
-        # self.picam2 = Picamera2()
-        # self.picam2.start_preview(Preview.NULL)
+        self.picam2 = Picamera2()
+        self.picam2.start_preview(Preview.NULL)
         time.sleep(5)
         self.send_command("G28")
 
@@ -56,6 +56,6 @@ class Printer:
         self.move_printer(0, 0, 100, 500)
         self.move_printer(75, 150, 100, 5000)
         time.sleep(2)
-        # self.picam2.start_and_capture_file("static/image/view.jpg")
+        self.picam2.start_and_capture_file("static/image/camera.jpg")
         time.sleep(2)
-        # self.picam2.close()
+        self.picam2.close()
