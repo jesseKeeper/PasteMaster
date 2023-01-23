@@ -18,13 +18,14 @@ jQuery(document).on('click', '#start-button', function () {
 
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '#start-paste', function () {
+    pcb_printer_coords = [];
     returnAllCheckedPoints().forEach(element => pcb_printer_coords.push(combinedArray[JSON.stringify(element)]));
 
     jQuery.ajax({
         url: './run',
         method: "POST",
         data: {
-            "coords": pcb_printer_coords
+            "coords": JSON.stringify(pcb_printer_coords)
         },        
         dataType: "json",
         contentType: "application/json",
