@@ -110,8 +110,8 @@ jQuery(document).on('click', '.header', function () {
 jQuery (function() {
     /* alleen bij het start scherm */
     if (jQuery('#start-page').length === 1) {
-        // insertImage ();
-        getTextFile();
+        insertImage ();
+        // getTextFile();
     }
 });
 

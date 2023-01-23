@@ -1,7 +1,21 @@
 # ttps://flask.palletsprojects.com/en/2.2.x/quickstart/#file-uploads
 import json
+import printer
+import detect
+import time
+
 from flask import Flask, render_template, send_file
 app = Flask(__name__)
+
+printer1 = printer.Printer("/dev/ttyUSB0", 115200, 55, 50)
+
+demoPadRange = [[2, 0, 0], [55, 255, 255]]
+demoPCBRange = [[135, 100, 78], [160, 255, 255]]
+pixelsPerMilimeter = 27.3315496994
+offset = (69.9, 11.2, 0)
+
+# detector = detect.Detector(demoPadRange, demoPCBRange, pixelsPerMilimeter, offset)
+# detections = []
 
 if __name__ == '__main__':
    app.run()
@@ -12,6 +26,11 @@ def homes():
 
 @app.route('/start', methods=['GET'])
 def index():
+   printer1.make_photo()
+
+   time.sleep(1)
+   # detections = detector.detect("static/image/view.jpg", (75, 150, 100), (3280, 2464))
+    
    # file = open(r'./src/pythonScript/photo.py', 'r').read()
    # return render_template('start.html'), exec(file)
    return render_template('start.html')
