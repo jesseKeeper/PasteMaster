@@ -13,6 +13,7 @@ jQuery(document).on('click', '.pcb-option', function () {
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '#start-button', function () {
     jQuery('#remove-button').remove();
+    // jQuery('#edit-text')
 });
 
 // func die reageert op verandering van .pcb-option
