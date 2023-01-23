@@ -1,6 +1,6 @@
 # ttps://flask.palletsprojects.com/en/2.2.x/quickstart/#file-uploads
 import json
-import printer
+# import printer
 import detect
 import time
 

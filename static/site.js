@@ -67,13 +67,13 @@ function getTextFile() {
         method: "GET",
         success: function (data) {
             /* retrief data */
-            webArrayData = JSON.parse(data['web_detections'].trim());
-            printerArrayData = JSON.parse(data['printer_detections'].trim());
+            webArrayData = JSON.parse(data['web_detections']);
+            printerArrayData = JSON.parse(data['printer_detections']);
             combinedArray = [];
 
-            for (let i = 0; i < webArrayData.length; i++) {
-                combinedArray[JSON.stringify(webArrayData[i])][printerArrayData[i]]
-            }
+            // for (let i = 0; i < webArrayData.length; i++) {
+            //     combinedArray[JSON.stringify(webArrayData[i])][printerArrayData[i]]
+            // }
             // webArrayData = JSON.parse(data['web_detections'].trim());
 
             /* use data */
@@ -137,7 +137,7 @@ jQuery (function() {
     /* alleen bij het start scherm */
     if (jQuery('#start-page').length === 1) {
         insertImage ();
-        // getTextFile();
+        getTextFile();
     }
 });
 
