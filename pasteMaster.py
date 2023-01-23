@@ -7,7 +7,7 @@ import time
 from flask import Flask, render_template, send_file, request
 app = Flask(__name__)
 
-printer1 = printer.Printer("/dev/ttyUSB0", 115200, 55, 50)
+# printer1 = printer.Printer("/dev/ttyUSB0", 115200, 55, 50)
 
 demoPadRange = [[2, 0, 0], [55, 255, 255]]
 demoPCBRange = [[135, 100, 78], [160, 255, 255]]
@@ -17,11 +17,10 @@ offset = (69.9, 11.2, 0)
 detector = detect.Detector(demoPadRange, demoPCBRange, pixelsPerMilimeter, offset)
 detections = []
 
-if printer1.camera:
-   filename = 'static/image/demoPCB.jpg'
-   # filename = 'static/image/camera.jpg'
-else:
-   filename = 'static/image/demoPCB.jpg'
+# if printer1.camera:
+#    filename = 'static/image/camera.jpg'
+# else:
+filename = 'static/image/demoPCB.jpg'
 
 if __name__ == '__main__':
    app.run()
@@ -33,7 +32,7 @@ def homes():
 @app.route('/start', methods=['GET'])
 def index():
    global detections
-   printer1.make_photo()
+   # printer1.make_photo()
 
    time.sleep(1)
    detections = detector.detect(filename, (75, 150, 100), (3280, 2464))
