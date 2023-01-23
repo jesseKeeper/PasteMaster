@@ -1,7 +1,7 @@
 # ttps://flask.palletsprojects.com/en/2.2.x/quickstart/#file-uploads
 import json
 import printer
-# import detect
+import detect
 import time
 
 from flask import Flask, render_template, send_file
@@ -26,7 +26,7 @@ def homes():
 
 @app.route('/start', methods=['GET'])
 def index():
-   printer1.make_photo()
+   # printer1.make_photo()
 
    time.sleep(1)
    # detections = detector.detect("static/image/view.jpg", (75, 150, 100), (3280, 2464))
