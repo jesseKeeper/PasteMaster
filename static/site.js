@@ -77,7 +77,7 @@ function getTextFile() {
             // webArrayData = JSON.parse(data['web_detections'].trim());
 
             /* use data */
-            drawArrayOfBoxes(webArrayData);
+            // drawArrayOfBoxes(webArrayData);
         }
     });
 }
