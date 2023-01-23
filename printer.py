@@ -4,6 +4,8 @@ import time
 from picamera2 import Picamera2
 
 class Printer:
+    picam2 = Picamera2()
+
     def __init__(self, port, baudrate, z_save, z_dispense, camera = True):
         self.port = port
         self.baud = baudrate
@@ -13,8 +15,8 @@ class Printer:
         self.status = "ready"
         self.serial = pyserial.Serial(self.port, self.baud, timeout=0)
 
-        if camera:
-            self.picam2 = Picamera2()
+        # if self.camera:
+        #     self.picam2 = Picamera2()
 
         time.sleep(5)
         self.send_command("G28")
@@ -61,7 +63,8 @@ class Printer:
         self.capture()
 
     def capture (self):
+        global picam2
         if self.camera:
-            self.picam2.start_and_capture_file("static/image/view.jpg", delay=0, show_preview=False)
-            self.picam2.stop()
-            self.picam2.close()
+            picam2.start_and_capture_file("static/image/camera.jpg", delay=0, show_preview=False)
+            picam2.stop()
+            picam2.close()
