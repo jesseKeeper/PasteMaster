@@ -13,9 +13,6 @@ class Printer:
         self.status = "ready"
         self.serial = pyserial.Serial(self.port, self.baud, timeout=0)
 
-        # if self.camera:
-        #     self.picam2 = Picamera2()
-
         time.sleep(5)
         self.send_command("G28")
 
