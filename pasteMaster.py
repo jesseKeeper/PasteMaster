@@ -58,12 +58,12 @@ def get_array():
 
 @app.route('/run', methods=['POST'])
 def run():
-   args = request.args.get("coords")
+   args = request.get_json()
    print (args)
-   args2 = json.loads(args)
+   # args2 = json.loads(args)
 
    # printer1.dispense_at_points(args2)
-   return args2
+   return args
 
 @app.errorhandler(404)
 def page_not_found(error):
