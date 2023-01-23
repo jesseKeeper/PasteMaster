@@ -7,7 +7,7 @@ import time
 from flask import Flask, render_template, send_file
 app = Flask(__name__)
 
-printer1 = printer.Printer("/dev/ttyUSB0", 115200, 55, 50)
+printer1 = printer.Printer("/dev/ttyUSB0", 115200, 55, 50, False)
 
 demoPadRange = [[2, 0, 0], [55, 255, 255]]
 demoPCBRange = [[135, 100, 78], [160, 255, 255]]

@@ -98,6 +98,7 @@ class Detector:
         # cv2.drawContours(image, filteredPads, -1, (0, 0, 0), 5)
         # cv2.imwrite("detected.jpg", image)
         web_coordinates = []
+        
         for i in range(len(filteredPads)):
             web_coordinates.append(filteredPads[i].tolist())
             
