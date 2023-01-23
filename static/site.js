@@ -44,17 +44,24 @@ function addCheckbox(_4dArray) {
 }
 
 
-let arrayData, cleanString;
+let webArrayData, printerArrayData, combinedArray, cleanString;
 function getTextFile() {
     jQuery.ajax({
         url: './array?' + uuidv4(),
         method: "GET",
         success: function (data) {
             /* retrief data */
-            arrayData = JSON.parse(data.trim());
+            webArrayData = JSON.parse(data['web_detections'].trim());
+            printerArrayData = JSON.parse(data['printer_detections'].trim());
+            combinedArray = [];
+            
+            for (let i = 0; i < webArrayData.length; i++) {
+                combinedArray[JSON.stringify(webArrayData[i])][printerArrayData[i]]
+            }
+            // webArrayData = JSON.parse(data['web_detections'].trim());
 
             /* use data */
-            drawArrayOfBoxes(arrayData);
+            drawArrayOfBoxes(webArrayData);
         }
     });
 }
