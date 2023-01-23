@@ -18,7 +18,8 @@ detector = detect.Detector(demoPadRange, demoPCBRange, pixelsPerMilimeter, offse
 detections = []
 
 if printer1.camera:
-   filename = 'static/image/camera.jpg'
+   filename = 'static/image/demoPCB.jpg'
+   # filename = 'static/image/camera.jpg'
 else:
    filename = 'static/image/demoPCB.jpg'
 
