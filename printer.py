@@ -11,8 +11,8 @@ class Printer:
         self.z_dispense = z_dispense
         self.status = "ready"
         self.serial = pyserial.Serial(self.port, self.baud, timeout=0)
-        self.picam2 = Picamera2()
-        self.picam2.start_preview(Preview.NULL)
+        # self.picam2 = Picamera2()
+        # self.picam2.start_preview(Preview.NULL)
         time.sleep(5)
         self.send_command("G28")
 
