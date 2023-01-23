@@ -11,12 +11,17 @@ jQuery(document).on('click', '.pcb-option', function () {
 });
 
 // func die reageert op verandering van .pcb-option
+jQuery(document).on('click', '#start-button', function () {
+    jQuery('#remove-button').remove();
+});
+
+// func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '#start-paste', function () {
     jQuery.ajax({
         url: './run',
         method: "POST",
         data: {
-            "coords": lat
+            "coords": pcb_printer_coords
         },        
         dataType: "json",
         contentType: "application/json",
