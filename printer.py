@@ -15,7 +15,6 @@ class Printer:
 
         if self.camera:
             self.picam2 = Picamera2()
-            self.picam2.start_preview(Preview.NULL)
 
         time.sleep(5)
         self.send_command("G28")
