@@ -1,7 +1,7 @@
 import serial as pyserial
 import threading
 import time
-from picamera2 import Picamera2, Preview
+from picamera2 import Picamera2
 
 class Printer:
     def __init__(self, port, baudrate, z_save, z_dispense, camera = True):
