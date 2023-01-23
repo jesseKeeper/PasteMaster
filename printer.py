@@ -13,7 +13,8 @@ class Printer:
         self.status = "ready"
 
         time.sleep(2)
-        self.picam2 = Picamera2()
+        if self.camera:
+            self.picam2 = Picamera2()
         time.sleep(2)
 
 
@@ -61,6 +62,8 @@ class Printer:
     def make_photo(self):
         self.move_printer(0, 0, 100, 500)
         self.move_printer(75, 150, 100, 5000)
+        
+        time.sleep(2)
 
         self.picam2.start_and_capture_file("static/image/camera.jpg", delay=0, show_preview=False)
         self.picam2.stop()
