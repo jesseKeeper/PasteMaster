@@ -82,7 +82,7 @@ function getTextFile() {
             combinedArray = [];
 
             for (let i = 0; i < webArrayData.length; i++) {
-                combinedArray[JSON.stringify(webArrayData[i])] = JSON.stringify(printerArrayData[i]);
+                combinedArray[JSON.stringify(webArrayData[i])] = JSON.parse(JSON.stringify(printerArrayData[i]));
             }
 
             /* use data */
