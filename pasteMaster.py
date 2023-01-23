@@ -1,7 +1,7 @@
 # ttps://flask.palletsprojects.com/en/2.2.x/quickstart/#file-uploads
 import json
 import printer
-import detect
+# import detect
 import time
 
 from flask import Flask, render_template, send_file
