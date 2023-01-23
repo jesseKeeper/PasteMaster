@@ -2,13 +2,9 @@ import serial as pyserial
 import threading
 import time
 from picamera2 import Picamera2
+import photo
 
 class Printer:
-    
-    time.sleep(5)
-    picam2 = Picamera2()
-    time.sleep(5)
-
     def __init__(self, port, baudrate, z_save, z_dispense, camera = True):
         self.port = port
         self.baud = baudrate
@@ -63,11 +59,4 @@ class Printer:
     def make_photo(self):
         self.move_printer(0, 0, 100, 500)
         self.move_printer(75, 150, 100, 5000)
-        self.capture()
-
-    def capture (self):
-        global picam2
-        if self.camera:
-            picam2.start_and_capture_file("static/image/camera.jpg", delay=0, show_preview=False)
-            picam2.stop()
-            picam2.close()
+        photo.capture()
