@@ -6,5 +6,3 @@ def capture ():
     picam2.start_and_capture_file("static/image/camera.jpg", delay=0, show_preview=False)
     picam2.stop()
     picam2.close()
-
-capture()
