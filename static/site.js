@@ -68,6 +68,7 @@ function getTextFile() {
         success: function (data) {
             /* retrief data */
             webArrayData = JSON.parse(data['web_detections']);
+            console.log(data)
             printerArrayData = JSON.parse(data['printer_detections']);
             combinedArray = [];
 
