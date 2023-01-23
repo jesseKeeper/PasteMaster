@@ -58,8 +58,9 @@ def get_array():
 
 @app.route('/run', methods=['POST'])
 def run():
-   # print (request)
-   return request
+   args = request.args.get("coords")
+   args.loads(args)
+   return args
 
 @app.errorhandler(404)
 def page_not_found(error):
