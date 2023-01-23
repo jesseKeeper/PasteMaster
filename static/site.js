@@ -25,7 +25,7 @@ jQuery(document).on('click', '#start-paste', function () {
         url: './run',
         method: "POST",
         data: {
-            "coords": pcb_printer_coords
+            "coords": JSON.stringify(pcb_printer_coords)
         },        
         dataType: "json",
         contentType: "application/json",
