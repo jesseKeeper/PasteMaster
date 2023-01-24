@@ -3,9 +3,10 @@ import json
 import printer
 import detect
 import time
-from picamera2 import Picamera2
 from flask import Flask, render_template, send_file, request
 app = Flask(__name__)
+
+from picamera2 import Picamera2
 picam2 = Picamera2()
 
 # printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 57.5)
@@ -45,7 +46,7 @@ def home_printer():
 def index():
    global printer1, detections
    # printer1.move_for_photo()
-
+   capture ()
 
    time.sleep(1)
    detections = detector.detect(filename, (75, 150, 100), (3280, 2464))
