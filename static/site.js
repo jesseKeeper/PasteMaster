@@ -156,18 +156,21 @@ let printer_home = false;
 jQuery (function() {
     jQuery('body').removeClass("loading");
     /* alleen bij het start scherm */
+    if (jQuery('#home-page').length === 1) {
+        toggle_page('after-start');
+        
+        if (printer_home === false) {
+            homePrinter();
+            printer_home = true;
+        }
+    }
+
     if (jQuery('#start-page').length === 1) {
         toggle_page('hide-pcb');
 
         insertImage ();
         getTextFile();
     }
-
-    if (printer_home === false) {
-        homePrinter();
-        printer_home = true;
-    }
-
 });
 
 function homePrinter() {
