@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang = "en" class="home-page">
+<head>
+    <title>PasteMaster completed</title>
+    <link rel="shortcut icon" href="{{url_for('static', filename='image/pageImage.png')}}" />
+    <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='image/pageImage.png')}}" />
+
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/site.css') }}">
+    <link href="https://fonts.cdnfonts.com/css/printed-circuit-board-7" rel="stylesheet">
+    <script src="{{ url_for('static',filename='jquery-3.6.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='site.js') }}"></script>
+    
+</head>
+<body>
+
+<h1 id="home-page" class="header cursor-pointer" title="Home">PasteMaster</h1>
+
+<div id="after-init">
+    <p class="index-text">To start using PasteMaster press 'Start'</p>
+    <p class="index-text"><a href="./start"><button id="start-button" type="button" class="button button1" >Start</button></a></p>
+</div>
+
+<div id="printer-init">
+    <p class="index-text">Printer initializing</p>
+</div>
+
+<div id="after-start">
+    <p class="index-text">Please wait, printer is going to take a photo!</p>
+    <p class="index-text">Photo is being analysed!</p>
+</div>
+<!-- <p class="index-text"><a href="./run.html"><button type="button" class="button button1">Run</button></a></p> -->
+
+<div class="modal"><!-- Place at bottom of page --></div>
+</body>
+</html>
