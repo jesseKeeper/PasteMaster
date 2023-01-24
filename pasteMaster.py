@@ -3,11 +3,16 @@ import json
 import printer
 import detect
 import time
-
+from picamera2 import Picamera2
 from flask import Flask, render_template, send_file, request
 app = Flask(__name__)
+picam2 = Picamera2()
 
 # printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 57.5)
+
+# filename, used by capture, detect and return of the image
+filename = 'static/image/camera.jpg'
+# filename = 'static/image/demoPCB.jpg'
 
 demoPadRange = [[2, 0, 0], [55, 255, 255]]
 demoPCBRange = [[135, 100, 78], [160, 255, 255]]
@@ -17,10 +22,12 @@ offset = (69.9, 11.2, 0)
 detector = detect.Detector(demoPadRange, demoPCBRange, pixelsPerMilimeter, offset)
 detections = []
 
-# if printer1.camera:
-#    filename = 'static/image/camera.jpg'
-# else:
-filename = 'static/image/demoPCB.jpg'
+def capture ():
+   global picam2
+   picam2.start_and_capture_file("static/image/camera.jpg", delay=0, show_preview=False)
+   picam2.stop()
+   picam2.close()
+
 
 @app.route('/')
 def homes():
@@ -37,8 +44,8 @@ def home_printer():
 @app.route('/start', methods=['GET'])
 def index():
    global printer1, detections
-   # printer1.make_photo()
-   time.sleep(15)
+   # printer1.move_for_photo()
+
 
    time.sleep(1)
    detections = detector.detect(filename, (75, 150, 100), (3280, 2464))
