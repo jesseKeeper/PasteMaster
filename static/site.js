@@ -14,6 +14,7 @@ jQuery(document).on('click', '.pcb-option', function () {
 jQuery(document).on('click', '#start-button', function () {
     jQuery('#remove-button').remove();
     jQuery('#edit-text').text("Er wordt een foto gemaakt!\nMoment geduld aub");
+    jQuery('body').addClass("loading");
 });
 
 // func die reageert op verandering van .pcb-option
@@ -21,8 +22,8 @@ jQuery(document).on('click', '#start-paste', function () {
     pcb_printer_coords = [];
     returnAllCheckedPoints().forEach(element => pcb_printer_coords.push(combinedArray[JSON.stringify(element)]));
 
+    toggle_page('show-pcb');
     toggle_page('hide-pcb');
-    toggle_page('unhide-pcb');
     
     jQuery.ajax({
         url: './run',
@@ -138,6 +139,8 @@ jQuery(document).on('click', '.header', function () {
 jQuery (function() {
     /* alleen bij het start scherm */
     if (jQuery('#start-page').length === 1) {
+        toggle_page('hide-pcb');
+
         insertImage ();
         getTextFile();
     }
