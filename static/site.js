@@ -61,7 +61,7 @@ function addCheckbox(_4dArray) {
     const inputString =         
         '<p id="' + pcb_id + '_pcb_option" class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
             '<input type="checkbox" id="' + pcb_id + '" name="' + pcb_id + '" value="' + JSON.stringify(_4dArray) + '" checked> ' +
-            '<label>Box ' + (pcb_id) + ' </label>' +
+            '<label>Box ' + (pcb_id + 1) + ' </label>' +
         '</p>';
     
     if (pcb_options.length === 0) {
@@ -151,6 +151,7 @@ jQuery(document).on('click', '.header', function () {
     window.location.replace("./");
 });
 
+let printer_home = false;
 /* Bij het laden van de pagina */
 jQuery (function() {
     jQuery('body').removeClass("loading");
@@ -161,6 +162,18 @@ jQuery (function() {
         insertImage ();
         getTextFile();
     }
+    if (printer_home === false) {
+        jQuery.ajax({
+            url: './run',
+            data : JSON.stringify(pcb_printer_coords),
+            contentType : 'application/json',
+            type : 'POST',       
+            success: function (data) {
+                printer_home = true;
+            }
+        });
+    }
+
 });
 
 /** genereer een uniek id --> zorg ervoor dat er niet gecached kan worden */
