@@ -163,18 +163,23 @@ jQuery (function() {
         getTextFile();
     }
     if (printer_home === false) {
-        jQuery.ajax({
-            url: './run',
-            data : JSON.stringify(pcb_printer_coords),
-            contentType : 'application/json',
-            type : 'POST',       
-            success: function (data) {
-                printer_home = true;
-            }
-        });
+        homePrinter();
+        printer_home = true;
     }
 
 });
+
+function homePrinter() {
+    jQuery('body').addClass("loading");
+    jQuery.ajax({
+        url: './home',
+        contentType : 'application/json',
+        type : 'POST',       
+        success: function (data) {
+            jQuery('body').removeClass("loading");
+        }
+    });
+}
 
 /** genereer een uniek id --> zorg ervoor dat er niet gecached kan worden */
 function uuidv4() {
