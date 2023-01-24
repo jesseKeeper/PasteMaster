@@ -15,11 +15,6 @@ jQuery(document).on('click', '#start-button', function () {
     toggle_page('after-init');
     toggle_page('after-start');
     jQuery('body').addClass("loading");
-});
-// func die reageert op verandering van .pcb-option
-jQuery(document).on('click', '#confirm-photo-button', function () {
-    toggle_page('confirm-photo');
-    jQuery('body').addClass("loading");
     jQuery.ajax({
         url: './photo',
         method: "GET",
@@ -28,6 +23,11 @@ jQuery(document).on('click', '#confirm-photo-button', function () {
             toggle_page('after-photo');
         }
     });
+});
+// func die reageert op verandering van .pcb-option
+jQuery(document).on('click', '#confirm-photo-button', function () {
+    toggle_page('confirm-photo');
+    jQuery('body').addClass("loading");
 });
 
 // func die reageert op verandering van .pcb-option
