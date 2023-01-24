@@ -66,9 +66,20 @@ function addCheckbox(_4dArray) {
     
     if (pcb_options.length === 0) {
         jQuery ( inputString ) .insertAfter(jQuery('#pcb-options'));
+    } else if (pcb_options.length % 25 == 0 ) {
+        let extraDiv = 
+        '<div id="_'+ (pcb_options.length / 25) +'_pcb_options" class="pcb-text"> ' + 
+            inputString + 
+        '</div>';
+        if (pcb_options.length / 25 === 1) {
+            jQuery (extraDiv) . insertAfter(jQuery('#_0_pcb_options'));
+        } else {
+            jQuery (extraDiv) . insertAfter(jQuery('#_'+ (pcb_options.length / 25) +'_pcb_options'));
+        }
     } else {
         jQuery ( inputString ) .insertAfter(jQuery('#' + (pcb_id - 1) + '_pcb_option'));
     }
+
     pcb_options.push(pcb_id);
 }
 
