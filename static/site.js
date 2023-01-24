@@ -59,12 +59,12 @@ function addCheckbox(_4dArray) {
     pcb_options.push(pcb_id);
     pcb_options_value.push(JSON.stringify(_4dArray));
 
-    jQuery('#pcb-options').append(
-        '<p class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
-        '<input type="checkbox" id="' + pcb_id + '" name="' + pcb_id + '" value="' + JSON.stringify(_4dArray) + '" checked> ' +
-        '<label>Box ' + (pcb_id) + ' </label>' +
-        '</p>'
-    );
+    jQuery (
+        '<p id="' + pcb_id + '_pcb_option" class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
+            '<input type="checkbox" id="' + pcb_id + '" name="' + pcb_id + '" value="' + JSON.stringify(_4dArray) + '" checked> ' +
+            '<label>Box ' + (pcb_id) + ' </label>' +
+        '</p>' 
+    ) .insertAfter(jQuery('#' + (pcb_id - 1) + '_pcb_option'));
 }
 
 
