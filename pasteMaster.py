@@ -1,19 +1,19 @@
 # ttps://flask.palletsprojects.com/en/2.2.x/quickstart/#file-uploads
 import json
 import printer
+import camera
 import detect
 import time
 from flask import Flask, render_template, send_file, request
 app = Flask(__name__)
-
-from picamera2 import Picamera2
-picam2 = Picamera2()
 
 # printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 57.5)
 
 # filename, used by capture, detect and return of the image
 filename = 'static/image/camera.jpg'
 # filename = 'static/image/demoPCB.jpg'
+
+camera = camera.Camera(filename)
 
 demoPadRange = [[2, 0, 0], [55, 255, 255]]
 demoPCBRange = [[135, 100, 78], [160, 255, 255]]
