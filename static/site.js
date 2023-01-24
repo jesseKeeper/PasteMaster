@@ -14,6 +14,10 @@ jQuery(document).on('click', '.pcb-option', function () {
 jQuery(document).on('click', '#start-button', function () {
     takePhoto()
 });
+// func die reageert op verandering van .pcb-option
+jQuery(document).on('click', '#deny-photo-button', function () {
+    takePhoto()
+});
 
 function takePhoto() {
     if (jQuery('#home-page').length === 1) {
@@ -33,6 +37,16 @@ function takePhoto() {
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '#confirm-photo-button', function () {
     toggle_page('confirm-photo');
+    jQuery('body').addClass("loading");
+    jQuery.ajax({
+        url: './start',
+        method: "GET",
+        success: function (data) {
+            jQuery('body').removeClass("loading");
+            toggle_page('after-photo');
+        }
+    });
+
     // jQuery('body').addClass("loading");
 });
 

@@ -45,7 +45,7 @@ def take_photo():
    # printer1.move_for_photo()
    time.sleep(5)
    file = open(r'./src/pythonScript/photo.py', 'r').read()
-   return render_template('start.html'), exec(file)
+   return render_template('start.html'), exec(file) #mogelijk runt ie al 
 
   
 @app.route('/done', methods=['GET'])
