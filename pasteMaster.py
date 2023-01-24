@@ -28,7 +28,7 @@ def homes():
 def home_printer():
    global printer1
    # printer1.send_command("G28")
-   time.sleep(15)
+   # time.sleep(15)
 
    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
@@ -73,7 +73,7 @@ def get_array():
 def run():
    args = request.get_json()
    # printer1.dispense_at_points(args)
-   time.sleep(10)
+   # time.sleep(10)
    
    return json.dumps({'completed':True}), 200, {'ContentType':'application/json'} 
 
