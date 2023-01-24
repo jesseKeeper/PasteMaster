@@ -162,6 +162,7 @@ jQuery (function() {
         insertImage ();
         getTextFile();
     }
+
     if (printer_home === false) {
         homePrinter();
         printer_home = true;
@@ -170,6 +171,8 @@ jQuery (function() {
 });
 
 function homePrinter() {
+    toggle_page('after-init');
+
     jQuery('body').addClass("loading");
     jQuery.ajax({
         url: './home',
@@ -177,6 +180,8 @@ function homePrinter() {
         type : 'POST',       
         success: function (data) {
             jQuery('body').removeClass("loading");
+            toggle_page('after-init');
+            toggle_page('printer-init');
         }
     });
 }
