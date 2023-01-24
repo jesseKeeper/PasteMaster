@@ -31,7 +31,7 @@ jQuery(document).on('click', '#start-paste', function () {
         contentType : 'application/json',
         type : 'POST',       
         success: function (data) {
-            console.log('confirmed send!');
+            window.location.replace("./done");
         }
     });
 });
@@ -158,7 +158,7 @@ jQuery (function() {
     /* alleen bij het start scherm */
     if (jQuery('#home-page').length === 1) {
         toggle_page('after-start');
-        
+
         if (printer_home === false) {
             homePrinter();
             printer_home = true;

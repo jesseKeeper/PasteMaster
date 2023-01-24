@@ -71,7 +71,7 @@ def run():
    # printer1.dispense_at_points(args)
    time.sleep(10)
    
-   return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+   return json.dumps({'completed':True}), 200, {'ContentType':'application/json'} 
 
 @app.errorhandler(404)
 def page_not_found(error):
