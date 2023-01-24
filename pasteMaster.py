@@ -55,7 +55,6 @@ def done():
 @app.route('/pcb')
 def get_image():
    global filename
-
    return send_file(filename, mimetype='image/jpg')
 
 @app.route('/array')

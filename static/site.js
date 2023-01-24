@@ -33,7 +33,7 @@ function takePhoto() {
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '#confirm-photo-button', function () {
     toggle_page('confirm-photo');
-    jQuery('body').addClass("loading");
+    // jQuery('body').addClass("loading");
 });
 
 // func die reageert op verandering van .pcb-option
