@@ -62,9 +62,9 @@ function addCheckbox(_4dArray) {
     jQuery (
         '<p class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
             '<input type="checkbox" id="' + pcb_id + '" name="' + pcb_id + '" value="' + JSON.stringify(_4dArray) + '" checked> ' +
-            '<label>Box ' + (pcb_id + 1) + ' </label>' +
+            '<label>Box ' + (pcb_id) + ' </label>' +
         '</p>' 
-    ) .insertAfter(jQuery('#pcb-options'));
+    ) .append(jQuery('#pcb-options'));
 }
 
 
@@ -137,6 +137,7 @@ jQuery(document).on('click', '.header', function () {
 
 /* Bij het laden van de pagina */
 jQuery (function() {
+    jQuery('body').removeClass("loading");
     /* alleen bij het start scherm */
     if (jQuery('#start-page').length === 1) {
         toggle_page('hide-pcb');
