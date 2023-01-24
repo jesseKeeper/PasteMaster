@@ -130,7 +130,7 @@ function checkBoxChecked (_id) {
     }
 }
 
-function drawArrayOfBoxes (_arrayOfBoxes, _color = 'red') {
+function drawArrayOfBoxes (_arrayOfBoxes, _color = 'green') {
     for(let i = 0; i< _arrayOfBoxes.length; i++){
         drawBox(_arrayOfBoxes[i], _color);
     }
@@ -223,7 +223,7 @@ function updateBox () {
     clearCanvas(); // clear canvas to 'overwrite' the other draws
     drawArrayOfBoxes(returnAllCheckedPoints()); // draw the array 
 
-    drawArrayOfBoxes(unchecked_pcb_options, 'green');
+    drawArrayOfBoxes(unchecked_pcb_options, 'red');
 }
 
 function toggle_page(_id) {
