@@ -56,15 +56,20 @@ function hasCheckbox (_4dArray) {
 function addCheckbox(_4dArray) {
     let pcb_id = pcb_count;
     pcb_count++;
-    pcb_options.push(pcb_id);
     pcb_options_value.push(JSON.stringify(_4dArray));
 
-    jQuery (
+    const inputString =         
         '<p id="' + pcb_id + '_pcb_option" class="pcb-option" style="margin-top: 0px; margin-bottom: 0px;">' +
             '<input type="checkbox" id="' + pcb_id + '" name="' + pcb_id + '" value="' + JSON.stringify(_4dArray) + '" checked> ' +
             '<label>Box ' + (pcb_id) + ' </label>' +
-        '</p>' 
-    ) .insertAfter(jQuery('#' + (pcb_id - 1) + '_pcb_option'));
+        '</p>';
+    
+    if (pcb_options.length === 0) {
+        jQuery ( inputString ) .insertAfter(jQuery('#pcb-options'));
+    } else {
+        jQuery ( inputString ) .insertAfter(jQuery('#' + (pcb_id - 1) + '_pcb_option'));
+    }
+    pcb_options.push(pcb_id);
 }
 
 
