@@ -16,6 +16,12 @@ jQuery(document).on('click', '#start-button', function () {
     toggle_page('after-start');
     jQuery('body').addClass("loading");
 });
+// func die reageert op verandering van .pcb-option
+jQuery(document).on('click', '#confirm-photo-button', function () {
+    toggle_page('confirm-photo');
+    jQuery('body').addClass("loading");
+    
+});
 
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '#start-paste', function () {
@@ -167,6 +173,7 @@ jQuery (function() {
 
     if (jQuery('#start-page').length === 1) {
         toggle_page('hide-pcb');
+        toggle_page('after-photo');
 
         insertImage ();
         getTextFile();

@@ -15,17 +15,24 @@
 <h2 id="start-page" class="header cursor-pointer" title="Home" style="font-size: 75%;">PasteMaster</h2>
 <div id="show-pcb">
     <div id="pcb_image">
-        <!-- <img id="pcb_image" src="{{ url_for('static',filename='image/array.jpg') }}" alt="pcb image" class="pcb-image"></img> -->
-        <!-- <img id="pcb_image" src="{{ url_for('static',filename='image/demoPCB.jpg') }}" alt="pcb image" class="pcb-image"></img> -->
     </div>
-    <p><button type="button" class="button button1" id="start-paste">Paste!</button></p>
-    <div id="_0_pcb_options" class="pcb-text">
-        <h1 id="pcb-options" class="option-header">Options</h1>
-        <!--p id="pcb-options" class="pcb-option" style="margin-top: 0px; margin-bottom: 5px;"> // bs dat jquery niet werkt
-            <input type="checkbox" name="All" value="All">
-            <label for="1">All</label>
-        </p-->
+    <div id="confirm-photo">
+        <h1 id="pcb-options" class="option-header">Confirm</h1>
+        <p class="index-text">Is the taken photo correct?</p>
+            <p><button type="button" class="button button1" id="confirm-photo-button">Yes</button></p>
+            <p><button type="button" class="button button1" id="deny-photo-button">No</button></p>
     </div>
+    <div id="after-photo">
+        <p><button type="button" class="button button1" id="start-paste">Paste!</button></p>
+        <div id="_0_pcb_options" class="pcb-text">
+            <h1 id="pcb-options" class="option-header">Options</h1>
+            <!--p id="pcb-options" class="pcb-option" style="margin-top: 0px; margin-bottom: 5px;"> // bs dat jquery niet werkt
+                <input type="checkbox" name="All" value="All">
+                <label for="1">All</label>
+            </p-->
+        </div>
+    </div>
+
 </div>
 <div id="hide-pcb">
     <p class="index-text">COMMAND SEND TO PRINTER</p>

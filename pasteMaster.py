@@ -1,7 +1,6 @@
 # ttps://flask.palletsprojects.com/en/2.2.x/quickstart/#file-uploads
 import json
 import printer
-import camera
 import detect
 import time
 from flask import Flask, render_template, send_file, request
@@ -12,8 +11,6 @@ app = Flask(__name__)
 # filename, used by capture, detect and return of the image
 filename = 'static/image/camera.jpg'
 # filename = 'static/image/demoPCB.jpg'
-
-camera = camera.Camera(filename)
 
 demoPadRange = [[2, 0, 0], [55, 255, 255]]
 demoPCBRange = [[135, 100, 78], [160, 255, 255]]
@@ -37,14 +34,18 @@ def home_printer():
 
 @app.route('/start', methods=['GET'])
 def index():
-   global printer1, detections
-   # printer1.move_for_photo()
-   capture ()
-
-   time.sleep(1)
+   global detections
    detections = detector.detect(filename, (75, 150, 100), (3280, 2464))
    
    return render_template('start.html')
+
+   
+@app.route('/photo', methods=['GET'])
+def take_photo():
+   # printer1.move_for_photo()
+   time.sleep(5)
+   file = open(r'./src/pythonScript/photo.py', 'r').read()
+   return render_template('start.html'), exec(file)
 
   
 @app.route('/done', methods=['GET'])
