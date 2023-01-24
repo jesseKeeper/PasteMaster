@@ -45,6 +45,11 @@ def index():
    
    return render_template('start.html')
 
+  
+@app.route('/done', methods=['GET'])
+def done(): 
+   return render_template('done.html')
+
 @app.route('/pcb')
 def get_image():
    global filename
@@ -55,8 +60,8 @@ def get_image():
 def get_array():
    global detections
    dict = {
-    "web_detections": detections[1],
-    "printer_detections": detections[0]
+      "web_detections": detections[1],
+      "printer_detections": detections[0]
    }
 
    detections_json = json.dumps(dict)
