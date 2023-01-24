@@ -23,13 +23,6 @@ offset = (69.9, 11.2, 0)
 detector = detect.Detector(demoPadRange, demoPCBRange, pixelsPerMilimeter, offset)
 detections = []
 
-def capture ():
-   global picam2
-   picam2.start_and_capture_file("static/image/camera.jpg", delay=0, show_preview=False)
-   picam2.stop()
-   picam2.close()
-
-
 @app.route('/')
 def homes():
    return render_template('index.html')
