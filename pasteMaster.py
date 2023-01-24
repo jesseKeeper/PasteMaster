@@ -35,6 +35,7 @@ def home_printer():
 @app.route('/start', methods=['GET'])
 def index():
    global detections
+   print('I am running the algoritmee')
    detections = detector.detect(filename, (75, 150, 100), (3280, 2464))
    
    return render_template('start.html')
@@ -45,7 +46,9 @@ def take_photo():
    # printer1.move_for_photo()
    time.sleep(5)
    file = open(r'./src/pythonScript/photo.py', 'r').read()
-   return render_template('start.html'), exec(file) #mogelijk runt ie al 
+   print('I have taken a photo!')
+   
+   return render_template('start.html'), exec(file) # runt direct detections 
 
   
 @app.route('/done', methods=['GET'])
