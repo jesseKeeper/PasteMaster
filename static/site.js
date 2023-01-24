@@ -12,8 +12,8 @@ jQuery(document).on('click', '.pcb-option', function () {
 
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '#start-button', function () {
-    jQuery('#remove-button').remove();
-    jQuery('#edit-text').text("Er wordt een foto gemaakt!\nMoment geduld aub");
+    toggle_page('after-init');
+    toggle_page('after-start');
     jQuery('body').addClass("loading");
 });
 
