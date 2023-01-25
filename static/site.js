@@ -32,6 +32,7 @@ function takePhoto() {
     jQuery.ajax({
         url: './photo',
         method: "GET",
+        async: false,
         success: function (data) {
             jQuery('body').removeClass("loading");
             toggle_page('after-photo');
