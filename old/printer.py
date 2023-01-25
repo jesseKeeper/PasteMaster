@@ -1,21 +1,15 @@
 import serial as pyserial
 import threading
 import time
-from picamera2 import Picamera2
-import paste
 
 class Printer:
-    def __init__(self, port, baudrate, z_save, z_dispense, camera = False):
+    def __init__(self, port, baudrate, z_save, z_dispense):
         self.port = port
         self.baud = baudrate
         self.z_safe = z_save
         self.z_dispense = z_dispense
-        self.camera = camera
         self.status = "ready"
 
-        time.sleep(2)
-        if self.camera:
-            self.picam2 = Picamera2()
         time.sleep(2)
 
         self.serial = pyserial.Serial(self.port, self.baud, timeout=0)
@@ -46,30 +40,20 @@ class Printer:
 
 # callable functions:
     def dispense_at_points(self, coordinate_list):
-        self.move_printer(0, 0, self.z_safe, 10000)
-        paste.dispense(500)
-        paste.retract(450)
-        time.sleep(10)
+        self.move_printer(0, 0, 50, 10000)
         for coordinate in coordinate_list:
             self.move_printer(coordinate[0], coordinate[1], self.z_safe, 10000)
             self.move_printer(coordinate[0], coordinate[1], self.z_dispense, 10000)
-            paste.dispense(500)
-            time.sleep(2)
+            time.sleep(0.5)
+            # dispense paste function call here
+            # time.sleep(1)
             self.move_printer(coordinate[0], coordinate[1], self.z_safe, 10000)
-            paste.retract(450)
             self.send_command("M114", True)
 
-    def make_photo(self):
+    def move_for_photo(self):
         self.send_command("G28")
 
         self.move_printer(0, 0, 100, 500)
         self.move_printer(75, 150, 100, 5000)
         
-        time.sleep(2)
-
-        # self.send_command("G28") # m18
-        if self.camera:
-            self.picam2.start_and_capture_file("static/image/camera.jpg", delay=0, show_preview=False)
-            self.picam2.stop()
-            self.picam2.close()
-
+        time.sleep(5)
