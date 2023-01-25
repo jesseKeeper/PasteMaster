@@ -31,6 +31,11 @@ def home_printer():
    # time.sleep(15)
 
    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+
+@app.route('/start', methods=['GET'])
+def index():
+   return render_template('start.html')
+
    
 @app.route('/photo', methods=['GET'])
 def take_photo():
