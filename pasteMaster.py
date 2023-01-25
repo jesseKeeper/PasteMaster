@@ -31,24 +31,19 @@ def home_printer():
    # time.sleep(15)
 
    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
-
-@app.route('/start', methods=['GET'])
-def index():
-   global detections
-   print('I am running the algoritmee')
-   detections = detector.detect(filename, (75, 150, 100), (3280, 2464))
-   
-   return render_template('start.html')
-
    
 @app.route('/photo', methods=['GET'])
 def take_photo():
+   global detections
    printer1.move_for_photo()
    # time.sleep(5)
 
    file = open(r'./src/pythonScript/photo.py', 'r').read()
    exec(file)
    print('I have taken a photo!')
+   
+   print('I am running the algoritmee')
+   detections = detector.detect(filename, (75, 150, 100), (3280, 2464))
    
    return render_template('start.html') # runt direct detections 
 
