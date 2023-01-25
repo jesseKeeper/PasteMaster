@@ -37,7 +37,7 @@ def home_printer():
    printer1.send_command("G28")
 
    # home_printer_command()
-   time.sleep(15)
+   # time.sleep(15)
 
    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
@@ -53,7 +53,7 @@ def take_photo():
    # printer1.send_command("G28")
 
    printer1.move_for_photo()
-   time.sleep(5)
+   # time.sleep(5)
 
    file = open(r'./src/pythonScript/photo.py', 'r').read()
    exec(file)
@@ -89,7 +89,7 @@ def get_array():
 def run():
    args = request.get_json()
    printer1.dispense_at_points(args)
-   time.sleep(10)
+   # time.sleep(10)
    
    return json.dumps({'completed':True}), 200, {'ContentType':'application/json'} 
 
