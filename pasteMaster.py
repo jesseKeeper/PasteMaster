@@ -17,7 +17,7 @@ filename = 'static/image/camera.jpg'
 demoPadRange = [[2, 0, 0], [55, 255, 255]]
 demoPCBRange = [[135, 100, 78], [160, 255, 255]]
 pixelsPerMilimeter = 27.3315496994
-offset = (69.9, 11.2, 0)
+offset = (40, 5, 0)
 
 detector = detect.Detector(demoPadRange, demoPCBRange, pixelsPerMilimeter, offset)
 detections = []
@@ -34,7 +34,9 @@ def homes():
 
 @app.route('/home', methods=['POST'])
 def home_printer():
-   home_printer_command()
+   printer1.send_command("G28")
+
+   # home_printer_command()
    time.sleep(15)
 
    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
@@ -47,7 +49,9 @@ def index():
 @app.route('/photo', methods=['GET'])
 def take_photo():
    global detections
-   home_printer_command()
+   # home_printer_command()
+   # printer1.send_command("G28")
+
    printer1.move_for_photo()
    time.sleep(5)
 
