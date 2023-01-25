@@ -35,6 +35,7 @@ function takePhoto() {
         success: function (data) {
             jQuery('body').removeClass("loading");
             toggle_page('after-photo');
+            window.location.replace("./start");
         }
     });
 }
