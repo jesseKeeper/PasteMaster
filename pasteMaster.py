@@ -50,7 +50,7 @@ def index():
 def take_photo():
    global detections
    # home_printer_command()
-   # printer1.send_command("G28")
+   printer1.send_command("G28")
 
    printer1.move_for_photo()
    # time.sleep(5)
