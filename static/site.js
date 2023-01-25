@@ -48,6 +48,7 @@ jQuery(document).on('click', '#confirm-photo-button', function () {
         success: function (data) {
             jQuery('body').removeClass("loading");
             toggle_page('after-photo');
+            getTextFile();
         }
     });
 
@@ -205,7 +206,6 @@ jQuery (function() {
         toggle_page('after-photo');
 
         insertImage ();
-        getTextFile();
     }
 });
 

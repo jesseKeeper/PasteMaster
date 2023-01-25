@@ -47,8 +47,8 @@ def take_photo():
    # time.sleep(5)
 
    file = open(r'./src/pythonScript/photo.py', 'r').read()
-   print('I have taken a photo!')
    exec(file)
+   print('I have taken a photo!')
    
    return render_template('start.html') # runt direct detections 
 
