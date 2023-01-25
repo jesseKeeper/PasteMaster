@@ -32,14 +32,18 @@ function takePhoto() {
     jQuery.ajax({
         url: './photo',
         method: "GET",
-        async: false,
         success: function (data) {
             jQuery('body').removeClass("loading");
-            toggle_page('after-photo');
-        }
+            // toggle_page('after-photo');
+            test()
+        },
+        async: false
     });
+}
+function test() {
     window.location.replace("./start");
 }
+
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '#confirm-photo-button', function () {
     toggle_page('confirm-photo');
