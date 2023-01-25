@@ -6,7 +6,9 @@ import time
 from flask import Flask, render_template, send_file, request
 app = Flask(__name__)
 
-printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 57.5)
+# printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 57.5)
+lastHome = None
+#  = time.time()
 
 # filename, used by capture, detect and return of the image
 filename = 'static/image/camera.jpg'
@@ -20,15 +22,20 @@ offset = (69.9, 11.2, 0)
 detector = detect.Detector(demoPadRange, demoPCBRange, pixelsPerMilimeter, offset)
 detections = []
 
+def home_printer_command():
+   global printer1, lastHome
+   print(time.time())
+   if (time.time() - lastHome) > 5000:
+      # printer1.send_command("G28")
+
 @app.route('/')
 def homes():
    return render_template('index.html')
 
 @app.route('/home', methods=['POST'])
 def home_printer():
-   global printer1
-   printer1.send_command("G28")
-   # time.sleep(15)
+   home_printer_command()
+   time.sleep(15)
 
    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
@@ -40,8 +47,9 @@ def index():
 @app.route('/photo', methods=['GET'])
 def take_photo():
    global detections
-   printer1.move_for_photo()
-   # time.sleep(5)
+   home_printer_command()
+   # printer1.move_for_photo()
+   time.sleep(5)
 
    file = open(r'./src/pythonScript/photo.py', 'r').read()
    exec(file)
@@ -76,8 +84,8 @@ def get_array():
 @app.route('/run', methods=['POST'])
 def run():
    args = request.get_json()
-   printer1.dispense_at_points(args)
-   # time.sleep(10)
+   # printer1.dispense_at_points(args)
+   time.sleep(10)
    
    return json.dumps({'completed':True}), 200, {'ContentType':'application/json'} 
 

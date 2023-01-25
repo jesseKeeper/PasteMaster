@@ -56,8 +56,6 @@ class Printer:
             self.send_command("M114", True)
 
     def move_for_photo(self):
-        # self.send_command("G28")
-
         self.move_printer(0, 0, 100, 500)
         self.move_printer(75, 150, 100, 5000)
         

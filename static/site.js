@@ -9,6 +9,23 @@ const refactoringValue = (0.5 * 0.6) - 0.0215; // 15" scherm
 // lines
 let canvas, ctx;
 
+/* Bij het laden van de pagina */
+jQuery (function() {
+    jQuery('body').removeClass("loading");
+    /* alleen bij het start scherm */
+    if (jQuery('#home-page').length === 1) {
+        toggle_page('after-start');
+        homePrinter();
+    }
+
+    if (jQuery('#start-page').length === 1) {
+        toggle_page('hide-pcb');
+
+        insertImage ();
+        getTextFile();
+    }
+});
+
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '.pcb-option', function () {
     updateBox ()
@@ -18,50 +35,28 @@ jQuery(document).on('click', '.pcb-option', function () {
 jQuery(document).on('click', '#start-button', function () {
     takePhoto()
 });
-// func die reageert op verandering van .pcb-option
-jQuery(document).on('click', '#deny-photo-button', function () {
-    takePhoto()
-});
 
 function takePhoto() {
     if (jQuery('#home-page').length === 1) {
         toggle_page('after-init');
         toggle_page('after-start');
     }
+
     jQuery('body').addClass("loading");
     jQuery.ajax({
         url: './photo',
         method: "GET",
         success: function (data) {
             jQuery('body').removeClass("loading");
-            // toggle_page('after-photo');
-            test()
+
+            windowToStart ()
         },
         async: false
     });
 }
-function test() {
+function windowToStart () {
     window.location.replace("./start");
-    // insertImage();
-    // getTextFile();
 }
-
-// func die reageert op verandering van .pcb-option
-jQuery(document).on('click', '#confirm-photo-button', function () {
-    toggle_page('confirm-photo');
-    jQuery('body').addClass("loading");
-    jQuery.ajax({
-        url: './start',
-        method: "GET",
-        success: function (data) {
-            jQuery('body').removeClass("loading");
-            toggle_page('after-photo');
-            getTextFile();
-        }
-    });
-
-    // jQuery('body').addClass("loading");
-});
 
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '#start-paste', function () {
@@ -81,7 +76,6 @@ jQuery(document).on('click', '#start-paste', function () {
         }
     });
 });
-
 
 // jQuery(document).on('hover', '.pcb-option', function () {
 //     console.log('test');
@@ -193,29 +187,6 @@ function returnAllCheckedPoints () {
 /** bij .header click ga naar homepage */
 jQuery(document).on('click', '.header', function () {
     window.location.replace("./");
-});
-
-let printer_home = false;
-/* Bij het laden van de pagina */
-jQuery (function() {
-    jQuery('body').removeClass("loading");
-    /* alleen bij het start scherm */
-    if (jQuery('#home-page').length === 1) {
-        // toggle_page('after-start');
-
-        if (printer_home === false) {
-            homePrinter();
-            printer_home = true;
-        }
-    }
-
-    if (jQuery('#start-page').length === 1) {
-        // toggle_page('hide-pcb');
-        // toggle_page('after-photo');
-
-        insertImage ();
-        getTextFile();
-    }
 });
 
 function homePrinter() {
