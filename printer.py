@@ -55,8 +55,8 @@ class Printer:
             paste.retract(450)
             self.send_command("M114", True)
 
-    def make_photo(self):
-        self.send_command("G28")
+    def move_for_photo(self):
+        # self.send_command("G28")
 
         self.move_printer(0, 0, 100, 500)
         self.move_printer(75, 150, 100, 5000)
