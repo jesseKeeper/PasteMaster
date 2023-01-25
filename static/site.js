@@ -42,8 +42,8 @@ function takePhoto() {
 }
 function test() {
     window.location.replace("./start");
-    insertImage();
-    getTextFile();
+    // insertImage();
+    // getTextFile();
 }
 
 // func die reageert op verandering van .pcb-option
@@ -214,6 +214,7 @@ jQuery (function() {
         // toggle_page('after-photo');
 
         insertImage ();
+        getTextFile();
     }
 });
 
