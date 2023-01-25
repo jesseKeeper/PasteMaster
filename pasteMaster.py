@@ -44,11 +44,13 @@ def index():
 @app.route('/photo', methods=['GET'])
 def take_photo():
    printer1.move_for_photo()
-   time.sleep(5)
+   # time.sleep(5)
+
    file = open(r'./src/pythonScript/photo.py', 'r').read()
    print('I have taken a photo!')
+   exec(file)
    
-   return exec(file) # runt direct detections 
+   return render_template('start.html') # runt direct detections 
 
   
 @app.route('/done', methods=['GET'])
