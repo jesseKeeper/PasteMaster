@@ -35,9 +35,9 @@ function takePhoto() {
         success: function (data) {
             jQuery('body').removeClass("loading");
             toggle_page('after-photo');
-            window.location.replace("./start");
         }
     });
+    window.location.replace("./start");
 }
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '#confirm-photo-button', function () {
