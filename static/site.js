@@ -201,7 +201,7 @@ jQuery (function() {
     jQuery('body').removeClass("loading");
     /* alleen bij het start scherm */
     if (jQuery('#home-page').length === 1) {
-        toggle_page('after-start');
+        // toggle_page('after-start');
 
         if (printer_home === false) {
             homePrinter();
@@ -210,8 +210,8 @@ jQuery (function() {
     }
 
     if (jQuery('#start-page').length === 1) {
-        toggle_page('hide-pcb');
-        toggle_page('after-photo');
+        // toggle_page('hide-pcb');
+        // toggle_page('after-photo');
 
         insertImage ();
     }
