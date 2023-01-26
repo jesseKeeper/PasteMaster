@@ -24,9 +24,10 @@ detections = []
 
 def home_printer_command():
    global printer1, lastHome
-   print(time.time())
-   # if (time.time() - lastHome) > 5000:
-   printer1.send_command("G28")
+   lastHome = time.time()
+   print(time.time() - lastHome)
+   if (time.time() - lastHome) > 5000:
+      printer1.send_command("G28")
 
 @app.route('/')
 def homes():
@@ -44,8 +45,8 @@ def index():
 @app.route('/photo', methods=['GET'])
 def take_photo():
    global detections
-   # home_printer_command()
-   printer1.send_command("G28")
+   home_printer_command()
+   # printer1.send_command("G28")
 
    printer1.move_for_photo()
    # time.sleep(5)
