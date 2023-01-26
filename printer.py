@@ -48,7 +48,7 @@ class Printer:
         for coordinate in coordinate_list:
             self.move_printer(coordinate[0], coordinate[1], self.z_safe, 10000)
             self.move_printer(coordinate[0], coordinate[1], self.z_dispense, 10000)
-            paste.dispense(550)
+            paste.dispense(650)
             time.sleep(2)
             self.move_printer(coordinate[0], coordinate[1], self.z_safe, 10000)
             paste.retract(450)
