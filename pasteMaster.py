@@ -24,10 +24,14 @@ detections = []
 
 def home_printer_command():
    global printer1, lastHome
-   lastHome = time.time()
    print(time.time() - lastHome)
-   if (time.time() - lastHome) > 5000:
+   if lastHome is None:
       printer1.send_command("G28")
+      lastHome = time.time()
+
+   elif (time.time() - lastHome) > 5000:
+      printer1.send_command("G28")
+      lastHome = time.time()
 
 @app.route('/')
 def homes():
