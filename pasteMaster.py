@@ -3,6 +3,7 @@ import json
 import printer
 import detect
 import time
+import paste
 from flask import Flask, render_template, send_file, request
 app = Flask(__name__)
 
@@ -37,6 +38,10 @@ def homes():
 def home_printer():
    home_printer_command()
    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+
+@app.route('/paste', methods=['GET'])
+def pasteTest():
+   paste.dispense(100)
 
 @app.route('/start', methods=['GET'])
 def index():

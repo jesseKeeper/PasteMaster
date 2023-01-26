@@ -1,7 +1,6 @@
 import serial as pyserial
 import threading
 import time
-from picamera2 import Picamera2
 import paste
 
 class Printer:
