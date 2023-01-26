@@ -13,7 +13,7 @@ GPIO.setmode(GPIO.BCM)
 
 # Set all pins as output
 for pin in chan_list:
-    # print("Setup pins")
+    print("Setup pins")
     GPIO.setup(pin, GPIO.OUT)
 
 # initialize array for sequence shift
@@ -40,7 +40,7 @@ def step(direction):
             current_state = 7
         else:
             current_state = current_state - 1
-    # print(states[current_state])
+    print(states[current_state])
     GPIO.output(chan_list, states[current_state])
     time.sleep(0.005)
 
