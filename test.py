@@ -1,8 +1,3 @@
-import camera
-import time
+import paste
 
-filename = 'static/image/camera.jpg'
-camera = camera.Camera(filename)
-time.sleep(3)
-camera.capture()
-
+paste.dispense(500)
