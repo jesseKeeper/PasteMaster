@@ -32,11 +32,7 @@ jQuery(document).on('click', '.pcb-option', function () {
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '#start-button', function () {
     jQuery('body').addClass("loading");
-
-    takePhoto()
-});
-
-function takePhoto() {
+    
     toggle_page('after-init');
     toggle_page('after-start');
     // jQuery('body').addClass("loading");
@@ -51,6 +47,10 @@ function takePhoto() {
         },
         async: false
     });
+});
+
+function takePhoto() {
+    
 }
 function windowToStart () {
     window.location.replace("./start");
@@ -64,6 +64,7 @@ jQuery(document).on('click', '#start-paste', function () {
     toggle_page('hide-options');
     toggle_page('hide-pcb');
     jQuery('body').addClass("loading");
+    clearCanvas();
 
     
     jQuery.ajax({

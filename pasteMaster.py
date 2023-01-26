@@ -25,7 +25,7 @@ detections = []
 def home_printer_command():
    global printer1, lastHome
    print(time.time() - lastHome)
-   if (time.time() - lastHome) > 5000:
+   if (time.time() - lastHome) > 300:
       printer1.send_command("G28")
       lastHome = time.time()
 
@@ -41,14 +41,12 @@ def home_printer():
 @app.route('/start', methods=['GET'])
 def index():
    return render_template('start.html')
-
    
 @app.route('/photo', methods=['GET'])
 def take_photo():
    global detections
    # printer has to be homed --> fail safe for stepper motors disabled
    home_printer_command()
-   # printer1.send_command("G28")
 
    # printer moves to dedicated point for taking picture of pcb
    printer1.move_for_photo()
@@ -90,7 +88,6 @@ def get_array():
 def run():
    args = request.get_json()
    printer1.dispense_at_points(args)
-   # time.sleep(10)
    
    return json.dumps({'completed':True}), 200, {'ContentType':'application/json'} 
 
