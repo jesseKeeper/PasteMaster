@@ -7,7 +7,7 @@ from flask import Flask, render_template, send_file, request
 app = Flask(__name__)
 
 printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 57)
-lastHome = None
+lastHome = 1
 #  = time.time()
 
 # filename, used by capture, detect and return of the image
@@ -25,11 +25,7 @@ detections = []
 def home_printer_command():
    global printer1, lastHome
    print(time.time() - lastHome)
-   if lastHome is None:
-      printer1.send_command("G28")
-      lastHome = time.time()
-
-   elif (time.time() - lastHome) > 5000:
+   if (time.time() - lastHome) > 5000:
       printer1.send_command("G28")
       lastHome = time.time()
 
@@ -39,6 +35,7 @@ def homes():
 
 @app.route('/home', methods=['POST'])
 def home_printer():
+   home_printer_command()
    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
 @app.route('/start', methods=['GET'])
