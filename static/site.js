@@ -32,6 +32,8 @@ jQuery(document).on('click', '.pcb-option', function () {
 
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '#start-button', function () {
+    jQuery('body').addClass("loading");
+
     takePhoto()
 });
 
@@ -40,8 +42,7 @@ function takePhoto() {
         toggle_page('after-init');
         toggle_page('after-start');
     }
-
-    jQuery('body').addClass("loading");
+    // jQuery('body').addClass("loading");
 
     jQuery.ajax({
         url: './photo',
