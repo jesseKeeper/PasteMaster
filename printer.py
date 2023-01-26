@@ -59,7 +59,7 @@ class Printer:
         paste.disable_stepper()
 
     def move_for_photo(self):
-        self.move_printer(0, 0, 100, 500)
+        self.move_printer(0, 0, 100, 10000)
         self.move_printer(75, 150, 100, 5000)
         
         time.sleep(2)
