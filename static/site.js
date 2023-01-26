@@ -201,7 +201,7 @@ function homePrinter() {
         success: function (data) {
             jQuery('body').removeClass("loading");
             toggle_page('after-init');
-            toggle_page('printer-init');
+            // toggle_page('printer-init');
         }
     });
 }

@@ -45,18 +45,23 @@ def index():
 @app.route('/photo', methods=['GET'])
 def take_photo():
    global detections
+   # printer has to be homed --> fail safe for stepper motors disabled
    home_printer_command()
    # printer1.send_command("G28")
 
+   # printer moves to dedicated point for taking picture of pcb
    printer1.move_for_photo()
    # time.sleep(5)
 
+   # Execute photo script
    file = open(r'./src/pythonScript/photo.py', 'r').read()
    exec(file)
    
    print('I am running the algoritmee')
+   # run algoritme to detect points on pcb
    detections = detector.detect(filename, (75, 150, 100), (3280, 2464))
    
+   # return the start.html that will show to the user
    return render_template('start.html') # runt direct detections 
 
   
