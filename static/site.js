@@ -48,9 +48,6 @@ jQuery(document).on('click', '#start-button', function () {
     });
 });
 
-function takePhoto() {
-    
-}
 function windowToStart () {
     window.location.replace("./start");
 }
@@ -63,7 +60,7 @@ jQuery(document).on('click', '#start-paste', function () {
     toggle_page('hide-options');
     toggle_page('hide-pcb');
     jQuery('body').addClass("loading");
-    clearCanvas();
+    // clearCanvas();
 
     
     jQuery.ajax({
