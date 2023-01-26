@@ -1,7 +1,7 @@
 import printer
 import time
 
-printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 57)
+printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 56.5)
 time.sleep(5)
 printer1.send_command("G28")
 printer1.move_printer(0, 0, 75, 10000)
