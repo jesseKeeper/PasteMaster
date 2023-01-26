@@ -39,9 +39,10 @@ def home_printer():
    home_printer_command()
    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
-@app.route('/paste', methods=['GET'])
+@app.route('/paste', methods=['POST'])
 def pasteTest():
-   paste.dispense(100)
+   paste.dispense(1000)
+   return json.dumps({'pasted':True}), 200, {'ContentType':'application/json'} 
 
 @app.route('/start', methods=['GET'])
 def index():
