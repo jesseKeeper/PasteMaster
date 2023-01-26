@@ -54,14 +54,14 @@ function windowToStart () {
 
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '#start-paste', function () {
+    clearCanvas();
+
     pcb_printer_coords = [];
     returnAllCheckedPoints().forEach(element => pcb_printer_coords.push(combinedArray[JSON.stringify(element)]));
 
     toggle_page('hide-options');
     toggle_page('hide-pcb');
     jQuery('body').addClass("loading");
-    // clearCanvas();
-
     
     jQuery.ajax({
         url: './run',
