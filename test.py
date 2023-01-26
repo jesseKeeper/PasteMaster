@@ -1,4 +1,6 @@
 import printer
+import paste
+import serial
 
 def main():
     printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 57)
