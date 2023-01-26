@@ -122,7 +122,7 @@ function addCheckbox(_4dArray) {
     }
 
     pcb_options.push(pcb_id);
-    setCheckbox(pcb_id, false);
+    setCheckbox(pcb_id, true);
 }
 
 
