@@ -32,7 +32,7 @@ jQuery(document).on('click', '.pcb-option', function () {
 // func die reageert op verandering van .pcb-option
 jQuery(document).on('click', '#start-button', function () {
     jQuery('body').addClass("loading");
-    
+
     toggle_page('after-init');
     toggle_page('after-start');
     // jQuery('body').addClass("loading");
@@ -44,8 +44,7 @@ jQuery(document).on('click', '#start-button', function () {
             jQuery('body').removeClass("loading");
 
             windowToStart ()
-        },
-        async: false
+        }
     });
 });
 
