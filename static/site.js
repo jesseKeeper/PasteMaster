@@ -11,7 +11,6 @@ let canvas, ctx;
 
 /* Bij het laden van de pagina */
 jQuery (function() {
-    jQuery('body').removeClass("loading");
     /* alleen bij het start scherm */
     if (jQuery('#home-page').length === 1) {
         toggle_page('after-start');
@@ -38,10 +37,8 @@ jQuery(document).on('click', '#start-button', function () {
 });
 
 function takePhoto() {
-    if (jQuery('#home-page').length === 1) {
-        toggle_page('after-init');
-        toggle_page('after-start');
-    }
+    toggle_page('after-init');
+    toggle_page('after-start');
     // jQuery('body').addClass("loading");
 
     jQuery.ajax({
@@ -64,8 +61,10 @@ jQuery(document).on('click', '#start-paste', function () {
     pcb_printer_coords = [];
     returnAllCheckedPoints().forEach(element => pcb_printer_coords.push(combinedArray[JSON.stringify(element)]));
 
-    toggle_page('show-pcb');
+    toggle_page('hide-options');
     toggle_page('hide-pcb');
+    jQuery('body').addClass("loading");
+
     
     jQuery.ajax({
         url: './run',
@@ -73,6 +72,8 @@ jQuery(document).on('click', '#start-paste', function () {
         contentType : 'application/json',
         type : 'POST',       
         success: function (data) {
+            jQuery('body').removeClass("loading");
+
             window.location.replace("./done");
         }
     });
