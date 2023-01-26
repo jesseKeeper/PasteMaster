@@ -1,5 +1,5 @@
-import printer
-import time
+# import printer
+# import time
 import sys
 
 def main():
