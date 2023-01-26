@@ -46,6 +46,7 @@ class Printer:
         paste.dispense(500)
         paste.retract(450)
         time.sleep(10)
+
         for coordinate in coordinate_list:
             self.move_printer(coordinate[0], coordinate[1], self.z_safe, 10000)
             self.move_printer(coordinate[0], coordinate[1], self.z_dispense, 10000)
@@ -54,6 +55,8 @@ class Printer:
             self.move_printer(coordinate[0], coordinate[1], self.z_safe, 10000)
             paste.retract(450)
             self.send_command("M114", True)
+            
+        paste.disable_stepper()
 
     def move_for_photo(self):
         self.move_printer(0, 0, 100, 500)

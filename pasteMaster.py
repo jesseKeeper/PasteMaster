@@ -6,7 +6,7 @@ import time
 from flask import Flask, render_template, send_file, request
 app = Flask(__name__)
 
-printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 57.5)
+printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 57)
 lastHome = None
 #  = time.time()
 
@@ -34,11 +34,6 @@ def homes():
 
 @app.route('/home', methods=['POST'])
 def home_printer():
-   # printer1.send_command("G28")
-
-   # home_printer_command()
-   # time.sleep(15)
-
    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
 @app.route('/start', methods=['GET'])
@@ -57,7 +52,6 @@ def take_photo():
 
    file = open(r'./src/pythonScript/photo.py', 'r').read()
    exec(file)
-   print('I have taken a photo!')
    
    print('I am running the algoritmee')
    detections = detector.detect(filename, (75, 150, 100), (3280, 2464))

@@ -15,7 +15,6 @@ jQuery (function() {
     /* alleen bij het start scherm */
     if (jQuery('#home-page').length === 1) {
         toggle_page('after-start');
-        homePrinter();
     }
 
     if (jQuery('#start-page').length === 1) {
@@ -43,6 +42,7 @@ function takePhoto() {
     }
 
     jQuery('body').addClass("loading");
+
     jQuery.ajax({
         url: './photo',
         method: "GET",

@@ -53,3 +53,5 @@ def retract(steps):
     for x in range(steps):
         step(0)
 
+def disable_stepper ():
+    GPIO.output(chan_list, [0, 0, 0, 0])
