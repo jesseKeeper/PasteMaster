@@ -42,7 +42,7 @@ class Printer:
 # callable functions:
     def dispense_at_points(self, coordinate_list):
         self.move_printer(0, 0, self.z_safe, 10000)
-        paste.dispense(500)
+        paste.dispense(250)
         time.sleep(5)
 
         for coordinate in coordinate_list:
@@ -51,7 +51,7 @@ class Printer:
             paste.dispense(500)
             time.sleep(2)
             self.move_printer(coordinate[0], coordinate[1], self.z_safe, 10000)
-            paste.retract(350)
+            paste.retract(400)
             self.send_command("M114", True)
         
         self.move_printer(0, 0, self.z_safe, 10000)
