@@ -42,16 +42,16 @@ class Printer:
 # callable functions:
     def dispense_at_points(self, coordinate_list):
         self.move_printer(0, 0, self.z_safe, 10000)
-        paste.dispense(1000)
+        paste.dispense(500)
         time.sleep(5)
 
         for coordinate in coordinate_list:
             self.move_printer(coordinate[0], coordinate[1], self.z_safe, 10000)
             self.move_printer(coordinate[0], coordinate[1], self.z_dispense, 10000)
-            paste.dispense(550)
+            paste.dispense(500)
             time.sleep(2)
             self.move_printer(coordinate[0], coordinate[1], self.z_safe, 10000)
-            paste.retract(450)
+            paste.retract(350)
             self.send_command("M114", True)
             
         paste.disable_stepper()
