@@ -53,7 +53,8 @@ class Printer:
             self.move_printer(coordinate[0], coordinate[1], self.z_safe, 10000)
             paste.retract(350)
             self.send_command("M114", True)
-            
+        
+        self.move_printer(0, 0, self.z_safe, 10000)
         paste.disable_stepper()
 
     def move_for_photo(self):
