@@ -1,7 +1,6 @@
 import serial as pyserial
 import threading
 import time
-import paste
 
 class Printer:
     def __init__(self, port, baudrate, z_save, z_dispense):
@@ -41,24 +40,20 @@ class Printer:
 
 # callable functions:
     def dispense_at_points(self, coordinate_list):
-        self.move_printer(0, 0, self.z_safe, 10000)
-        paste.dispense(1000)
-        time.sleep(5)
-
+        self.move_printer(0, 0, 50, 10000)
         for coordinate in coordinate_list:
             self.move_printer(coordinate[0], coordinate[1], self.z_safe, 10000)
             self.move_printer(coordinate[0], coordinate[1], self.z_dispense, 10000)
-            paste.dispense(550)
-            time.sleep(2)
+            time.sleep(0.5)
+            # dispense paste function call here
+            # time.sleep(1)
             self.move_printer(coordinate[0], coordinate[1], self.z_safe, 10000)
-            paste.retract(450)
             self.send_command("M114", True)
-            
-        paste.disable_stepper()
 
     def move_for_photo(self):
-        self.move_printer(0, 0, 100, 10000)
+        self.send_command("G28")
+
+        self.move_printer(0, 0, 100, 500)
         self.move_printer(75, 150, 100, 5000)
         
-        time.sleep(2)
-
+        time.sleep(5)

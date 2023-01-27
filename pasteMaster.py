@@ -3,10 +3,13 @@ import json
 import printer
 import detect
 import time
+import paste
 from flask import Flask, render_template, send_file, request
 app = Flask(__name__)
 
-# printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 57.5)
+printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 57)
+lastHome = 1
+#  = time.time()
 
 # filename, used by capture, detect and return of the image
 filename = 'static/image/camera.jpg'
@@ -15,10 +18,17 @@ filename = 'static/image/camera.jpg'
 demoPadRange = [[2, 0, 0], [55, 255, 255]]
 demoPCBRange = [[135, 100, 78], [160, 255, 255]]
 pixelsPerMilimeter = 27.3315496994
-offset = (69.9, 11.2, 0)
+offset = (55.5, -2, 0)
 
 detector = detect.Detector(demoPadRange, demoPCBRange, pixelsPerMilimeter, offset)
 detections = []
+
+def home_printer_command():
+   global printer1, lastHome
+   print(time.time() - lastHome)
+   if (time.time() - lastHome) > 300:
+      printer1.send_command("G28")
+      lastHome = time.time()
 
 @app.route('/')
 def homes():
@@ -26,29 +36,38 @@ def homes():
 
 @app.route('/home', methods=['POST'])
 def home_printer():
-   global printer1
-   # printer1.send_command("G28")
-   # time.sleep(15)
-
+   home_printer_command()
    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+
+@app.route('/paste', methods=['POST'])
+def pasteTest():
+   paste.dispense(1000)
+   return json.dumps({'pasted':True}), 200, {'ContentType':'application/json'} 
 
 @app.route('/start', methods=['GET'])
 def index():
-   global detections
-   print('I am running the algoritmee')
-   detections = detector.detect(filename, (75, 150, 100), (3280, 2464))
-   
    return render_template('start.html')
-
    
 @app.route('/photo', methods=['GET'])
 def take_photo():
-   # printer1.move_for_photo()
-   time.sleep(5)
+   global detections
+   # printer has to be homed --> fail safe for stepper motors disabled
+   home_printer_command()
+
+   # printer moves to dedicated point for taking picture of pcb
+   printer1.move_for_photo()
+   # time.sleep(5)
+
+   # Execute photo script
    file = open(r'./src/pythonScript/photo.py', 'r').read()
-   print('I have taken a photo!')
+   exec(file)
    
-   return render_template('start.html'), exec(file) # runt direct detections 
+   print('I am running the algoritmee')
+   # run algoritme to detect points on pcb
+   detections = detector.detect(filename, (75, 150, 100), (3280, 2464))
+   
+   # return the start.html that will show to the user
+   return render_template('start.html') # runt direct detections 
 
   
 @app.route('/done', methods=['GET'])
@@ -74,8 +93,7 @@ def get_array():
 @app.route('/run', methods=['POST'])
 def run():
    args = request.get_json()
-   # printer1.dispense_at_points(args)
-   # time.sleep(10)
+   printer1.dispense_at_points(args)
    
    return json.dumps({'completed':True}), 200, {'ContentType':'application/json'} 
 
