@@ -7,7 +7,7 @@ import paste
 from flask import Flask, render_template, send_file, request
 app = Flask(__name__)
 
-printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 57)
+printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 56.5)
 lastHome = 1
 #  = time.time()
 
