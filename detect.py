@@ -8,7 +8,7 @@ class Detector:
         self.pixels_per_milimeter = pixels_per_milimeter
         self.offset = offset
 
-    def makeColorMask(self, image, colorRange):
+    def make_color_mask(self, image, colorRange):
         lower = np.array(colorRange[0])
         upper = np.array(colorRange[1])
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
@@ -16,17 +16,17 @@ class Detector:
 
         return mask
 
-    def findAndSortContours(self, image):
+    def find_and_sort_contours(self, image):
         contours, hierarchy = cv2.findContours(
             image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
             
         sortedContours = sorted(contours, key=cv2.contourArea, reverse=True)
         return sortedContours, hierarchy
 
-    def isolatePCB(self, image, pcbColor):
-        pcbMask = self.makeColorMask(image, pcbColor)
+    def isolate_pcb(self, image, pcbColor):
+        pcbMask = self.make_color_mask(image, pcbColor)
         cv2.imwrite("PCBmask.jpg", pcbMask)
-        sortedContours, _ = self.findAndSortContours(pcbMask)
+        sortedContours, _ = self.find_and_sort_contours(pcbMask)
         
         rect = cv2.minAreaRect(sortedContours[0])
         box = cv2.boxPoints(rect)
@@ -39,11 +39,11 @@ class Detector:
         cv2.imwrite("IsolatedPCB.jpg", out)
         return out
 
-    def findPads(self, image, padColor, pcbColor):
-        isolatedPCB = self.isolatePCB(image, pcbColor)
-        padMask = self.makeColorMask(isolatedPCB, padColor)
+    def find_pads(self, image, padColor, pcbColor):
+        isolatedPCB = self.isolate_pcb(image, pcbColor)
+        padMask = self.make_color_mask(isolatedPCB, padColor)
         cv2.imwrite("padMask.jpg", padMask)
-        padContours, hierarchy = self.findAndSortContours(padMask)
+        padContours, hierarchy = self.find_and_sort_contours(padMask)
         for i in range(len(padContours)):
             rect = cv2.minAreaRect(padContours[i])
             box = cv2.boxPoints(rect)    
@@ -51,14 +51,14 @@ class Detector:
             padContours[i] = box
         return padContours, hierarchy
 
-    def filterByArea(self, pads, minArea):
+    def filter_by_area(self, pads, minArea):
         filteredPads = []
         for pad in pads:
             if cv2.contourArea(pad) > minArea:
                 filteredPads.append(pad)
         return filteredPads
 
-    def getMiddlePoints(self, pads):
+    def get_middle_points(self, pads):
         middlePoints = []
         for i in pads:
             M = cv2.moments(i)
@@ -68,7 +68,7 @@ class Detector:
                 middlePoints.append((cx, cy))
         return middlePoints
 
-    def pixelToPrinterCoordinate(self, pixelCoordinate, imageOrigin, imageSize):
+    def pixel_to_printer_coordinate(self, pixelCoordinate, imageOrigin, imageSize):
         centerX = imageSize[0] / 2
         centerY = imageSize[1] / 2
         
@@ -82,19 +82,19 @@ class Detector:
 
         return((printerX, printerY))
 
-    def padsToPrinterCoordinates(self, pixelCoordinates, imageOrigin, imageSize):
+    def pads_to_printer_coordinates(self, pixelCoordinates, imageOrigin, imageSize):
         coordinates = []
         for coordinate in pixelCoordinates:
-            coordinates.append(self.pixelToPrinterCoordinate(coordinate, imageOrigin, imageSize))
+            coordinates.append(self.pixel_to_printer_coordinate(coordinate, imageOrigin, imageSize))
         return coordinates
 
     # callable functions
     def detect(self, image_name, image_origin, image_size):
         image = cv2.imread(image_name)
-        pads, hierarchy = self.findPads(image, self.pad_range, self.pcb_range)
-        filteredPads = self.filterByArea(pads, 100)
-        middle_points = self.getMiddlePoints(filteredPads)
-        printer_coordinates = self.padsToPrinterCoordinates(middle_points, image_origin, image_size)
+        pads, hierarchy = self.find_pads(image, self.pad_range, self.pcb_range)
+        filteredPads = self.filter_by_area(pads, 100)
+        middle_points = self.get_middle_points(filteredPads)
+        printer_coordinates = self.pads_to_printer_coordinates(middle_points, image_origin, image_size)
         # cv2.drawContours(image, filteredPads, -1, (0, 0, 0), 5)
         # cv2.imwrite("detected.jpg", image)
         web_coordinates = []
