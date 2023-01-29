@@ -33,7 +33,7 @@ jQuery(document).on('click', '.pcb-option', function () {
 jQuery(document).on('click', '#start-button', function () {
     jQuery('body').addClass("loading");
 
-    toggle_page('after-init');
+    toggle_page('init');
     toggle_page('after-start');
 
     jQuery.ajax({
@@ -189,7 +189,7 @@ jQuery(document).on('click', '.header', function () {
 });
 
 function homePrinter() {
-    toggle_page('after-init');
+    toggle_page('init');
 
     jQuery('body').addClass("loading");
     jQuery.ajax({
@@ -198,7 +198,7 @@ function homePrinter() {
         type : 'POST',       
         success: function (data) {
             jQuery('body').removeClass("loading");
-            toggle_page('after-init');
+            toggle_page('init');
             // toggle_page('printer-init');
         }
     });
