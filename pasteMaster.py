@@ -9,7 +9,6 @@ app = Flask(__name__)
 
 printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 57)
 lastHome = 1
-#  = time.time()
 
 # filename, used by capture, detect and return of the image
 filename = 'static/image/camera.jpg'
