@@ -1,7 +1,7 @@
 import os
 import time
-#cmd = 'git pull'
-#os.system(cmd)
+cmd = 'git pull'
+os.system(cmd)
 # time.sleep(2)
 # print('First time after power down:')
 
