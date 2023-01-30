@@ -8,7 +8,7 @@ from flask import Flask, render_template, send_file, request
 app = Flask(__name__)
 
 # makes connection with USB0 device (Ender 3)
-printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 56.5)
+printer1 = printer.Printer("/dev/ttyUSB0", 115200, 75, 57)
 lastHome = 1
 
 # filename, used detect and return of the image
