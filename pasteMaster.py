@@ -58,6 +58,7 @@ def home_printer ():
 @app.route('/paste', methods=['GET'])
 def paste_on_spot ():
    paste.dispense(1000)
+   paste.disable_stepper()
    return json.dumps({'pasted':True}), 200, {'ContentType':'application/json'} 
 
 # logic to take a photo and analyse the taken picture
