@@ -3,4 +3,4 @@
 ./static/text/*.txt
 *.jpg
 *.pyc
-
+./__pycache__/*
