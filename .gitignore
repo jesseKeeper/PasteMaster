@@ -1,3 +1,6 @@
 ./Kickstarter/*
 ./static/image/*.jpg
 ./static/text/*.txt
+*.jpg
+*.pyc
+
