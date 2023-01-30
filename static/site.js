@@ -20,7 +20,7 @@ jQuery (function() {
         toggle_page('hide-pcb');
 
         insertImage ();
-        getTextFile();
+        getDetections();
     }
 });
 
@@ -33,9 +33,8 @@ jQuery(document).on('click', '.pcb-option', function () {
 jQuery(document).on('click', '#start-button', function () {
     jQuery('body').addClass("loading");
 
-    toggle_page('after-init');
+    toggle_page('init');
     toggle_page('after-start');
-    // jQuery('body').addClass("loading");
 
     jQuery.ajax({
         url: './photo',
@@ -125,7 +124,7 @@ function addCheckbox(_4dArray) {
 
 
 let webArrayData, printerArrayData, combinedArray, cleanString, parsedJSON;
-function getTextFile() {
+function getDetections() {
     jQuery.ajax({
         url: './array?' + uuidv4(),
         method: "GET",
@@ -190,7 +189,7 @@ jQuery(document).on('click', '.header', function () {
 });
 
 function homePrinter() {
-    toggle_page('after-init');
+    toggle_page('init');
 
     jQuery('body').addClass("loading");
     jQuery.ajax({
@@ -199,7 +198,7 @@ function homePrinter() {
         type : 'POST',       
         success: function (data) {
             jQuery('body').removeClass("loading");
-            toggle_page('after-init');
+            toggle_page('init');
             // toggle_page('printer-init');
         }
     });

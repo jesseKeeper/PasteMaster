@@ -5,6 +5,7 @@ html, body {
 
 .home-page,
 .start-page,
+.done-page,
 .not-found-page {
   background-color: rgb(30, 110, 40);
 }
