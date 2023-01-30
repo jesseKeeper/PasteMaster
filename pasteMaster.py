@@ -55,7 +55,7 @@ def home_printer ():
    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
 # dispenses some paste if IP:5000/paste is requested
-@app.route('/paste', methods=['POST'])
+@app.route('/paste', methods=['GET'])
 def paste_on_spot ():
    paste.dispense(1000)
    return json.dumps({'pasted':True}), 200, {'ContentType':'application/json'} 
