@@ -160,7 +160,7 @@ function drawBox (_4dArray, _color) {
 
 /** checks if checkbox with given _id is checked */
 function checkBoxChecked (_id) {
-    if (jQuery('#' + _id).is(':checked')) {
+    if (jQuery('#' + _id + '_pcb_option').is(':checked')) {
         checked_pcb_options.push(JSON.parse(jQuery('#' + _id + '_pcb_option').val()));
     } else {
         unchecked_pcb_options.push(JSON.parse(jQuery('#' + _id + '_pcb_option').val()));
