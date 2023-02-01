@@ -1,5 +1,4 @@
 import os
-import time
 print('First time after power down:')
 
 print('export FLASK_ENV=development')
